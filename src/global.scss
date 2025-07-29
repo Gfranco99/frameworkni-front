@@ -1,0 +1,220 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+// @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/assets/fonts/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*[scrollX=true] {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
+  .scrollX {
+      flex: 0 0 auto;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+}
+
+ion-button{
+  --border-radius: 10px;
+}
+
+ion-segment-button {
+  --color-checked: var(--ion-color-primary);
+}
+
+ion-fab-button{
+  --background: #eb445a;
+  --color: white;
+}
+
+.buttonCss {
+
+  button.alert-button.confirma{
+    color: red;
+  }
+}
+
+.textNoticias{
+  color: #9C9797;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.activate-account-icons {
+  margin: auto;
+  margin-bottom: 50px;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+.img-start-page{
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.f_smaller {
+  font-size: smaller;
+}
+
+.back-icon {
+  padding-left: 10px;
+  padding-top: 25px;
+  position: absolute;
+}
+
+.custom-toast-class{
+  --background:#BEA859;
+  --border-color:#BEA859;
+  //--border-radius:1px;
+  //--border-style:solid;
+  //--border-width:4px;
+  --color:#ffffff;
+}
+
+//modal de confirmação - pedido certidão
+.modal-verifica {
+  --height: 60%;
+  --border-radius: 10px;
+  padding: 25px;
+}
+
+//modal de detalhes - dúvidas frequentes
+.modal-detalhes {
+  --height: 90%;
+  --border-radius: 10px;
+  padding: 30px;
+}
+
+.modal-confirma {
+  --height: 35%;
+  --border-radius: 10px;
+  padding: 30px;
+}
+
+.modal-endAgenda {
+  --height: 100%;
+  --width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+  .modal-senha {
+   --height: 30%;
+   --width: 40%;
+   --border-radius: 25px;
+   }
+ }
+
+ @media screen and (max-width: 599px) {
+  .modal-senha {
+   --height: 30%;
+   --width: 80%;
+   --border-radius: 25px;
+   }
+ }
+
+ .modal-qrCode {
+  --height: 60%;
+  --border-radius: 10px;
+  padding: 30px;
+}
+
+.pop-meusProtocolos{
+  --width: 80%;
+}
+
+.alert-radio-group.sc-ion-alert-md{
+  height: 230px;
+}
+
+.alert-radio-label.sc-ion-alert-md{
+  white-space: normal;
+}
+
+.alert-tappable.alert-radio {
+  height: auto;
+  contain: content;
+}
+
+ion-tab-button {
+  --color-selected: var(--ion-color-primary);
+}
+
+ion-card:hover {
+  cursor: pointer;
+}
+
+swiper-container {
+  --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
+  --swiper-pagination-color: var(--ion-color-primary, #3880ff);
+  --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+  --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+  --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+}
+
+swiper-slide {
+  display: flex;
+  position: relative;
+
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-size: 18px;
+
+  text-align: center;
+  box-sizing: border-box;
+}
+
+swiper-slide img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}

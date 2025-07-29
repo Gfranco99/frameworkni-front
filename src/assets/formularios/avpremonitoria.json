@@ -1,0 +1,208 @@
+{
+  "title": "Averbação Premonitória",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "saudacao",
+          "type": "title",
+          "value": "Ilmo. Senhor 10º Oficial de Registro de Imóveis da Capital do Estado de São Paulo.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Requerente",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome completo",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "estadocivil",
+          "label": "Estado civil",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "nacionalidade",
+          "label": "Nacionalidade",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "profissao",
+          "label": "Profissão",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "filiacao",
+          "label": "Filiação",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "introMatricula",
+          "value": "requer a V. Senhoria, nos termos do artigo 828 do Código de Processo Civil, seja feita na(s) matrícula(s)/transcrição(ões) abaixo relacionada(s) a averbação do ajuizamento da ação de execução, conforme certidão em anexo. ",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "matriculaTranscricao",
+          "label": "Matrículas/Transcrições:",
+          "value": "",
+          "type": "textarea",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "termos",
+          "label": "",
+          "value": "Termos em que, pede Deferimento.",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "show": "print",
+          "extras": {
+            "sizePrint": 12
+          }
+        },
+        {
+          "name": "rodape",
+          "type": "paragraph",
+          "show": "",
+          "value": "(Somente poderá ser requerida a averbação pelo exequente, ou seu advogado, legalmente constituído e mediante apresentação de cópia autenticada da procuração). Reconhecer a(s) firma(s) do(a,os,as) requerente(s) ou assinar(em) o requerimento perante o funcionário do cartório.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/app/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goCadastro()">
+        <ion-icon size="large" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Dúvidas Frequentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-toolbar slot='fixed'>
+  <ion-grid [fixed]="true">
+    <ion-item class="filter">
+      <ion-label>Filtrar por:</ion-label>
+        <ion-select (ionChange)="filterTipo($event)"
+                    value="TODOS"
+                    okText="OK"
+                    cancelText="Fechar">
+        <ion-select-option *ngFor="let tipo of tipos" >{{tipo}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-searchbar debounce="500" (ionInput)="filterPergunta($event)" placeholder="Pesquisar" class="search">
+    </ion-searchbar>
+  </ion-grid>
+</ion-toolbar>
+  <ion-content>
+   <ion-grid [fixed]="true">
+      <ion-card *ngFor="let card of duvidas" color="light">
+        <ion-card-header (click)="goDetalhe(card.Id)">
+          <ion-row>
+            <ion-col size=10>
+              <ion-card-title>
+                <ion-label color="primary">
+                  <h2>{{card.Pergunta}}</h2>
+                </ion-label>
+              </ion-card-title>
+              <ion-card-subtitle>
+                <ion-label>
+                  Tipo: {{card.TipoDuvida.Descricao}}
+                </ion-label>
+              </ion-card-subtitle>
+            </ion-col>
+            <ion-col style="text-align: end; margin-right: 15px;">
+              <ion-icon name="chevron-forward-outline" class="icone"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-card-header>
+      </ion-card>
+      <br><br><br>
+    </ion-grid>
+  </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" edge slot="fixed" style="margin-bottom: 45px;">
+    <ion-fab-button color="primary" size=small>
+      <ion-icon name="arrow-up-outline" (click)="pageScroller()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>

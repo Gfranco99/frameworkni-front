@@ -1,0 +1,122 @@
+<ion-content>
+  <ion-grid>
+    <div class="main-content">
+      <div class="back-button">
+        <ion-buttons mode="md">
+          <ion-button href="#">
+            <ion-icon name="arrow-back" color="primary" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+
+      <ion-row class="logo">
+        <img src="../../../assets/img/logo-horizontal.png" />
+      </ion-row>
+
+      <form autocomplete="autocomplete_off" [formGroup]="onLoginForm" class="form">
+        <ion-item lines="none"
+          [ngClass]="{ 'invalid' : onLoginForm.controls.email.invalid && onLoginForm.controls.email.touched }"
+          mode="md">
+          <ion-icon name="mail" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" inputmode="email" formControlName="email" (keydown.enter)="enterBtn()"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': onLoginForm.controls.email.invalid && onLoginForm.controls.email.touched }"
+          [style.visibility]="onLoginForm.controls.email.invalid && onLoginForm.controls.email.touched ? 'visible' : 'hidden' ">
+          Informe um endereço de e-mail válido.
+        </div>
+
+        <ion-item lines="none"
+          [ngClass]="{ 'invalid' : onLoginForm.controls.senha.invalid && onLoginForm.controls.senha.touched }"
+          mode="md">
+          <ion-icon name="key" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [type]="isVisible ? 'text' : 'password'" formControlName="senha" clearOnEdit="false"
+            (keydown.enter)="enterBtn()"></ion-input>
+          <ion-button slot="end" (click)="isVisible = !isVisible" fill="clear" shape="round">
+            <ion-icon [name]="isVisible ? 'eye' : 'eye-off'" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-row class="warning-and-recovery">
+          <ion-col class="ion-no-padding">
+            <div class="password-warning"
+              [ngClass]="{ 'animation': onLoginForm.controls.senha.invalid && onLoginForm.controls.senha.touched }"
+              [style.visibility]="onLoginForm.controls.senha.invalid && onLoginForm.controls.senha.touched ? 'visible' : 'hidden' ">
+              É necessário informar a senha.
+            </div>
+          </ion-col>
+
+          <ion-col class="ion-no-padding ion-text-end">
+            <ion-router-link href="#/recovery/password" class="link">
+              <ion-text tappable class="recovery">
+                Esqueci minha senha
+              </ion-text>
+            </ion-router-link>
+          </ion-col>
+
+          <ion-col size="12" class="ion-no-padding ion-text-end">
+            <ion-router-link href="#/register/security-check?option=recoverymaillogin" class="link">
+              <ion-text tappable class="recovery">
+                Esqueci meu e-mail
+              </ion-text>
+            </ion-router-link>
+          </ion-col>
+        </ion-row>
+
+        <ion-accordion-group>
+          <ion-accordion value="first">
+            <div slot="content">
+              <ion-item lines="none" mode="md" class="form-input"
+                [ngClass]="{ 'invalid' :onLoginForm.controls.documento.invalid &&onLoginForm.controls.documento.touched }">
+                <ion-icon name="id-card" slot="start" aria-hidden="true"></ion-icon>
+                <ion-label position="floating">CPF/CNPJ</ion-label>
+                <ion-input type="text" inputmode="numeric" maxlength="18" formControlName="documento"
+                  [brmasker]="{person: true}" (keydown.enter)="enterBtn()"></ion-input>
+              </ion-item>
+              <div class="input-warning"
+                [ngClass]="{ 'animation':onLoginForm.controls.documento.invalid &&onLoginForm.controls.documento.touched }"
+                [style.visibility]="onLoginForm.controls.documento.invalid &&onLoginForm.controls.documento.touched ? 'visible' : 'hidden' ">
+                Informe um CPF ou CNPJ válido.
+              </div>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+      </form>
+
+      <ion-row class="login-button-container">
+        <ion-col size="2"></ion-col>
+        <ion-col size="8">
+          <ion-button expand="block" color="primary" (click)="goLogin()" [disabled]="!onLoginForm.valid">
+            Entrar
+          </ion-button>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+
+      <ion-row class="account-checker ion-justify-content-center">
+        <ion-text>
+          Não tem uma conta?
+        </ion-text>
+        <ion-router-link href="#/register" class="link">
+          <ion-text>
+            Cadastre-se.
+          </ion-text>
+        </ion-router-link>
+      </ion-row>
+    </div>
+
+    <div class="footer">
+      <ion-row class="ion-justify-content-center">
+        <a href="http://www.integral.com.br">
+          <img src="../../../assets/img/logo_normal.png">
+        </a>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-text>&#64; 2023 Integral Sistemas | Todos os direitos reservados.</ion-text>
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>

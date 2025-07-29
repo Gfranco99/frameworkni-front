@@ -1,0 +1,177 @@
+<ion-content>
+  <ion-grid>
+
+    <div class="main-content">
+      <ion-text class="title">
+        Criar uma conta
+      </ion-text>
+
+      <form [formGroup]="RegisterUserForm" class="form" (ngSubmit)="registerUser()">
+        <ion-item lines="none" mode="md" class="form-input"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.nome.invalid && RegisterUserForm.controls.nome.touched }">
+          <ion-icon class="position-icon" name="person" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.nome.invalid && RegisterUserForm.controls.nome.touched }"
+          [style.visibility]="RegisterUserForm.controls.nome.invalid && RegisterUserForm.controls.nome.touched ? 'visible' : 'hidden' ">
+          Informe um nome válido.
+        </div>
+
+        <ion-item lines="none" mode="md" class="form-input"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.documento.invalid && RegisterUserForm.controls.documento.touched }">
+          <ion-icon name="id-card" class="position-icon" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">CPF/CNPJ</ion-label>
+          <ion-input type="text" (change)="validaDoc($event)" inputmode="numeric" maxlength="18" formControlName="documento"
+            [brmasker]="{person: true}" (keypress)="utils.numberOnly($event)"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.documento.invalid && RegisterUserForm.controls.documento.touched }"
+          [style.visibility]="RegisterUserForm.controls.documento.invalid && RegisterUserForm.controls.documento.touched ? 'visible' : 'hidden' ">
+          Informe um CPF ou CNPJ válido.
+        </div>
+
+        <ion-item lines="none" mode="md" class="form-input"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.email.invalid && RegisterUserForm.controls.email.touched }">
+          <ion-icon name="mail" slot="start" class="position-icon" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" inputmode="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.email.invalid && RegisterUserForm.controls.email.touched }"
+          [style.visibility]="RegisterUserForm.controls.email.invalid && RegisterUserForm.controls.email.touched ? 'visible' : 'hidden' ">
+          Informe um endereço de e-mail válido.
+        </div>
+
+        <ion-item lines="none" mode="md" class="form-input"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.fone.invalid && RegisterUserForm.controls.fone.touched }">
+          <ion-icon name="call" slot="start" aria-hidden="true" class="phone-icon"></ion-icon>
+          <ion-input style="position: relative; bottom: 8px;" type="tel" inputmode="tel" formControlName="fone" label="Celular" labelPlacement="stacked" [brmasker]="{phone: true}">
+            <ion-button slot="start" (click)="presentPopover($event)" color="tertiary" >
+              <ion-icon src="../../../assets/icons/flags/{{selectedCountry.flag}}"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.fone.invalid && RegisterUserForm.controls.fone.touched }"
+          [style.visibility]="RegisterUserForm.controls.fone.invalid && RegisterUserForm.controls.fone.touched ? 'visible' : 'hidden' ">
+          Informe um número de celular válido.
+        </div>
+
+        <ion-item lines="none" mode="md" class="form-input"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.senha.invalid && RegisterUserForm.controls.senha.touched }">
+          <ion-icon name="key" class="position-icon" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [type]="isVisible ? 'text' : 'password'" formControlName="senha" clearOnEdit="false"></ion-input>
+          <ion-button slot="end" (click)="isVisible = !isVisible" fill="clear" shape="round">
+            <ion-icon [name]="isVisible ? 'eye' : 'eye-off'" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button class="open-accordion" slot="end" fill="clear" shape="round"
+            (click)="toggleAccordion(accordionGroup)">
+            <ion-icon name="information-circle" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <div class="password-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.senha.invalid && RegisterUserForm.controls.senha.touched }"
+          [style.visibility]="RegisterUserForm.controls.senha.invalid && RegisterUserForm.controls.senha.touched ? 'visible' : 'hidden' ">
+          <!-- Requisitos: 8 ou mais caracteres, letras minúsculas e maiúsculas, 1 número. -->
+          Verifique os requisitos da senha.
+        </div>
+        <ion-accordion-group #accordionGroup class="password-accordion">
+          <ion-accordion value="first">
+            <div slot="content">
+              <ul>
+                <li>
+                  <ion-text>
+                    8 ou mais caracteres.
+                  </ion-text>
+                </li>
+                <li>
+                  <ion-text>
+                    Pelo menos uma letra maiúscula e uma minúscula.
+                  </ion-text>
+                </li>
+                <li>
+                  <ion-text>
+                    Pelo menos um número.
+                  </ion-text>
+                </li>
+              </ul>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+
+        <ion-item lines="none" class="confirm-password form-input" mode="md"
+          [ngClass]="{ 'invalid' : RegisterUserForm.controls.confirmaSenha.invalid && RegisterUserForm.controls.confirmaSenha.touched }">
+          <ion-icon name="checkmark-done-circle" class="position-icon" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">Confirmar senha</ion-label>
+          <ion-input [type]="isConfirmPasswordVisible ? 'text' : 'password'" formControlName="confirmaSenha"
+            clearOnEdit="false" (keydown.enter)="enterBtn()"></ion-input>
+          <ion-button slot="end" (click)="isConfirmPasswordVisible = !isConfirmPasswordVisible" fill="clear"
+            shape="round" class="toggle-password-icon">
+            <ion-icon [name]="isConfirmPasswordVisible ? 'eye' : 'eye-off'" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': RegisterUserForm.controls.confirmaSenha.invalid && RegisterUserForm.controls.confirmaSenha.touched }"
+          [style.visibility]=" RegisterUserForm.controls.confirmaSenha.invalid && RegisterUserForm.controls.confirmaSenha.touched ? 'visible' : 'hidden' ">
+          As senhas devem ser iguais.
+        </div>
+
+        <div class="accordion-div">
+          <ion-item class="accordion-header" lines="none" button="true" detail="false" mode="md">
+            <ion-label>Políticas e Termos de Uso</ion-label>
+            <ion-icon name="chevron-down" slot="end"
+              [ngClass]="accordion?.value == 'first' ? 'rotate-icon' : 'initial-position'"></ion-icon>
+          </ion-item>
+
+          <ion-accordion-group id="conditionsAccordionGroup">
+            <ion-accordion value="first">
+              <ion-row slot="content">
+                <ion-checkbox labelPlacement="end" formControlName="acceptTermOfUse">
+                  Declaro que li e aceito os
+                  <a [href]="urlPolitics" target="_blank" (click)="$event.stopPropagation()">
+                    TERMOS DE USO e a POLÍTICA DE PRIVACIDADE
+                  </a>
+                  que operam neste serviço.</ion-checkbox>
+
+                <ion-checkbox labelPlacement="end" formControlName="ativarNotificacao">
+                  Autorizo o envio para o endereço de e-mail informações sobre serviços associados a este sistema.
+                </ion-checkbox>
+
+                <ion-checkbox labelPlacement="end" formControlName="acceptAccountCreate">
+                  Eu voluntariamente forneço os meus dados pessoais a fim de executar e manter uma conta de usuário
+                  neste aplicativo.
+                </ion-checkbox>
+              </ion-row>
+            </ion-accordion>
+          </ion-accordion-group>
+        </div>
+
+        <ion-row class="register-button-container">
+          <ion-col size="2"></ion-col>
+          <ion-col size="8">
+            <ion-button expand="block" color="primary" type="submit" [disabled]="!RegisterUserForm.valid">
+              Cadastrar
+            </ion-button>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+        </ion-row>
+      </form>
+
+      <ion-row class="ion-justify-content-center account-checker ion-padding-bottom">
+        <ion-text>
+          Já tem uma conta?
+        </ion-text>
+        <ion-router-link href="#/login" class="link">
+          <ion-text>
+            Entrar.
+          </ion-text>
+        </ion-router-link>
+      </ion-row>
+
+    </div>
+
+  </ion-grid>
+</ion-content>

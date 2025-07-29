@@ -1,0 +1,47 @@
+ion-searchbar {
+  --border-radius: 30px;
+}
+
+ion-item {
+  --background: #ffffff;
+  --border-color: #bea859;
+  --border-radius: 0px;
+  --padding-bottom:2px;
+}
+
+ion-list {
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+.itemprotocolo {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  /* Cinza Texto - 10risp */
+  color: #9c9797;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  flex: 0 0 auto;
+}
+
+.pago{
+  font-size: 14px;
+  color: green;
+  font-weight: bold;
+}
+
+.pendente{
+  font-size: 14px;
+  color: #a8934e;
+  font-weight: bold;
+}
+
+ion-icon {
+  pointer-events: none;
+ }
+

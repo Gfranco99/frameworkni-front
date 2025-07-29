@@ -1,0 +1,80 @@
+$color-10risp: #1B5B47;
+
+// .link-button {
+//   display: block;
+//   background-color: white;
+//   border: none;
+//   color: $color-10risp;
+//   text-decoration: underline;
+//   margin: auto;
+//   padding: 10px;
+//   font-size: 1em;
+// }
+#sms-input {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px 20px 0px;
+
+  input {
+
+    width: 60px;
+    height: 60px;
+    border: solid 1px $color-10risp;
+    border-radius: 6px;
+    margin: 10px;
+    outline: none;
+    font-size: 1.5em;
+    text-align: center;
+    color: $color-10risp;
+  }
+}
+.editar {
+  display: block;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 5px;
+}
+.phoneNumber {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.warning-icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.timer {
+  display: flex;
+  background-color: $color-10risp;
+  color: white;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  font-size: 1em;
+  padding: .5em;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.timer-message {
+  display: flex;
+  justify-content: flex;
+  align-items: center;
+  background-color: orange;
+  font-size: .8em;
+  color: black;
+  margin: auto;
+  width: max-content;
+  margin-top: 5px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 20px;
+
+}

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/app"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meus Protocolos</ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="isMobileDevice">
+        <ion-button (click)='presentPopover($event)'><ion-icon name="ellipsis-vertical"></ion-icon></ion-button>
+      </div>
+      <div *ngIf="!isMobileDevice">
+        <ion-button (click)='goAdicionarProtocolo()'><ion-icon slot="icon-only" name="add-circle"></ion-icon></ion-button>
+        <ion-button (click)='orderList()'><ion-icon slot="icon-only" name="options-outline"></ion-icon></ion-button>
+        <ion-button (click)="remove()"><ion-icon slot="icon-only" name="trash-outline"></ion-icon></ion-button>
+      </div>
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content
+    pullingText="Puxe para Atualizar"
+    refreshingSpinner="lines"
+    refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="animated fadeInDown ion-text-center ion-padding">
+    <ion-text color="primary">Lista de protocolos associados à sua conta.</ion-text>
+  </div>
+
+  <ion-grid [fixed]="true">
+    <!-- listagem dos Procolos -->
+    <!-- size define a quantidade a ser mostrada-->
+    <!-- o custom está fazendo a chamada dos dados vindos do back-end  -->
+    <!-- Searchpar faz com que a barra de pesquisa fique visível  -->
+    <app-user-protocols [size]=0 [custom]=1 [searchParam]=true></app-user-protocols>
+  </ion-grid>
+</ion-content>

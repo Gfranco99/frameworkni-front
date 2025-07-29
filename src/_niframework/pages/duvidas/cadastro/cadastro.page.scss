@@ -1,0 +1,22 @@
+ion-grid{
+    color: #1B5B47;
+    background: white;
+    min-height: 100%;
+    padding: 20px;
+}
+
+ion-label{
+    font-weight: bold;
+}
+
+.textBorder{
+    background: white;
+    color: black;
+    margin-bottom: 20px;
+    border: solid 1px lightgray;
+}
+
+.textBorder.ng-valid:not(form){
+    border: solid 1px green;
+}
+

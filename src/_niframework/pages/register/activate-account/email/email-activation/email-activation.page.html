@@ -1,0 +1,72 @@
+<!-- Solicita ao usuário o e-mail cadastrado, para envio do link de ativação. -->
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <div class="back-icon">
+      <ion-router-link href="#/register/options">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+
+      <img src="../../../../../../assets/icons/mail-outline.svg" class="activate-account-icons">
+
+      <h3 no-margin>
+        <ion-text color="light">
+          <ion-text color="primary">Validar cadastro</ion-text>
+        </ion-text>
+      </h3>
+      <div class="animated fadeInDown ion-text-center ion-padding">
+        <ion-text color="primary">Informe novamente o seu e-mail para prosseguir com a validação.</ion-text>
+      </div>
+    </div>
+    <ion-item style="padding-top: 60px" color="light" class="animated fadeInUp">
+      <form [formGroup]="formulario">
+
+        <ion-label position="floating" type="email">
+          <ion-icon name="mail-outline" item-start></ion-icon>
+          Email
+        </ion-label>
+        <ion-input id="emailValue" type="email" formControlName="email"></ion-input>
+
+      </form>
+
+    </ion-item>
+    <div style="padding-top: 40px;">
+      <ion-row class="opcoes-items">
+        <ion-col size=2></ion-col>
+        <ion-col size=8>
+          <ion-button expand="block" color="primary" tappable (click)="CheckEmail()" [disabled]="!formulario.valid">
+            Validar
+          </ion-button>
+        </ion-col>
+        <ion-col size=2></ion-col>
+
+
+        <div>
+          <ion-router-link href="#/register/security-check?option=recoverymail" class="link" (click)="goToSecurity()">
+            <ion-text class="f_smaller">
+              esqueci meu e-mail
+            </ion-text>
+          </ion-router-link>
+        </div>
+      </ion-row>
+
+    </div>
+
+    <!-- <div>
+      <ion-row>
+        <ion-col size=2></ion-col>
+        <ion-col size=8>
+          <button class="link-button" (click)="editEmail()">Corrigir meu e-mail</button>
+        </ion-col>
+        <ion-col size=2></ion-col>
+      </ion-row>
+    </div> -->
+  </ion-grid>
+</ion-content>

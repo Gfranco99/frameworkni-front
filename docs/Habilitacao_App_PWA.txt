@@ -1,0 +1,25 @@
+1) Remover arquivo manifest.webmanifest;
+
+2) Instalar o pacote angular/pwa :
+
+ ng add @angular/pwa
+
+* o instalador de pacote vai ajustar os arquivos app.module.ts e index.html inserindo os trechos necesários para incorporação.
+
+3) Ajustar arquivo manifest.webmanifest (que será input para o arquivo de manifesto PWA durante o build) :
+
+- atributos name, short_name, theme_color e background_color.
+
+4) Para testar é necessário fazer um build com opção --prod no ionic  :
+
+ionic build --prod
+
+5) Após o build, executar a aplicação a partir do diretório www (utilize o aplicativo serve) :
+
+Para instalar o serve : npm install serve -g
+
+ionic serve (para executar a aplicação)
+
+
+
+

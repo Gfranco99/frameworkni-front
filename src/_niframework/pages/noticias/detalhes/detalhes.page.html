@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="" defaultHref="#/app/noticias"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes da Notícia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <ion-card *ngFor="let andamento of detalhe; let i = index" color="light">
+      <ion-card-header>
+        <ion-card-subtitle>{{andamento.Data | date :'dd/MM/yyyy'}}</ion-card-subtitle>
+        <ion-card-title style="text-align:center"><b>{{andamento.Titulo}}</b></ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-text class="f-small" [innerHTML]="andamento.Texto">
+          <p>{{andamento.Texto}}</p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+</ion-content>

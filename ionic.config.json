@@ -1,0 +1,7 @@
+{
+  "name": "frameworkNI-latest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

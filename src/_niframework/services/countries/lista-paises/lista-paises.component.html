@@ -1,0 +1,4 @@
+<ion-list>
+  <ion-item button="true" (click)="seleciona(countries[27])"><ion-icon src="../../../assets/icons/flags/br.svg"></ion-icon> Brazil (Brasil) +55</ion-item>
+  <ion-item button="true" *ngFor="let c of countries" (click)="seleciona(c)"><ion-icon src="../../../assets/icons/flags/{{c.flag}}"></ion-icon> {{c.name}} +{{c.value}}</ion-item>
+</ion-list>

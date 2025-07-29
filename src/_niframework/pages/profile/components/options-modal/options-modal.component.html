@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-text>
+    <h1 class="title">
+      {{title}}
+    </h1>
+  </ion-text>
+  <ion-item-divider lines="full"></ion-item-divider>
+  <ion-list>
+    <ion-item *ngFor="let i of itemsFromDataBaseToModal; let index = index" (click)="checkItem(i)">
+      <ion-label>{{ i[(keyNameItem)] }} - {{i[(keyDescription)]}}</ion-label>
+      <ion-checkbox slot="start" [checked]="checked(i)"></ion-checkbox>
+      <!-- <ion-checkbox slot="start" [(ngModel)]="i.isChecked"></ion-checkbox> -->
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-button expand="full" (click)="closeModal()">Pronto</ion-button>

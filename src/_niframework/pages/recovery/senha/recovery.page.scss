@@ -1,0 +1,241 @@
+ion-content {
+    --background: var(--ion-color-light);
+}
+
+ion-grid {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: column;
+}
+
+.main-content {
+    text-align: center;
+    margin-top: 20px;
+    width: 455px;
+    background-color: white;
+    padding: 16px 16px 30px 16px;
+    border-radius: 10px;
+    box-shadow: 0px 13px 22px rgba(0, 0, 0, 0.137);
+}
+
+.title {
+    font-weight: 400;
+    color: var(--ion-color-primary);
+    font-size: 21px;
+    display: block;
+    padding: 16px 0px;
+}
+
+.info {
+    display: block;
+    color: rgba(0, 0, 0, 0.781);
+}
+
+.form {
+    padding: 32px 16px 0px 16px;
+
+    ion-item {
+        color: var(--ion-color-primary);
+        --background: var(--ion-color-secondary);
+        border-radius: 6px;
+        display: block;
+        align-items: center;
+        white-space: nowrap;
+
+        ion-icon[slot=start] {
+            color: var(--ion-color-primary);
+            font-size: 24px;
+            margin-inline-end: 25px;
+        }
+    }
+
+    ion-item::part(native) {
+        height: 56px;
+        --min-height: 56px;
+    }
+
+    ion-input {
+        --padding-bottom: 7px;
+        --padding-top: 7px;
+        color: rgba(0, 0, 0, 0.781);
+    }
+
+    ion-icon {
+        position: relative;
+        top: 1px;
+    }
+
+    ion-item:hover {
+        color: var(--ion-color-dark);
+
+        ion-icon[slot=start] {
+            color: var(--ion-color-dark);
+        }
+    }
+
+    .invalid {
+        ion-label {
+            color: var(--ion-color-danger);
+        }
+
+        ion-icon[slot=start] {
+            color: var(--ion-color-danger);
+        }
+    }
+
+    .invalid:hover {
+        --background: var(--ion-color-danger-tint);
+
+        ion-icon[slot=start] {
+            color: var(--ion-color-danger);
+        }
+    }
+}
+
+.input-warning {
+    color: var(--ion-color-danger);
+    font-size: 11px;
+    margin-left: 3px;
+    padding-bottom: 7px;
+    position: relative;
+    text-align: left;
+}
+
+.animation {
+    animation: shake 0.2s ease-in-out 0s 1;
+}
+
+@keyframes shake {
+    0% {
+        right: 0px;
+    }
+
+    25% {
+        right: 5px;
+    }
+
+    75% {
+        right: -5px;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+.send-email-button-container {
+    padding: 16px 10px 0px;
+
+    ion-button {
+        font-size: 14px;
+        --border-radius: 10px;
+        min-height: 34px;
+    }
+}
+
+.back-to-login-button-container {
+    padding: 0px 20px;
+
+    ion-button {
+        font-size: 14px;
+        --border-radius: 10px;
+        min-height: 34px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ion-content {
+        --background: white;
+    }
+
+    .main-content {
+        box-shadow: none;
+        max-width: 425px;
+        width: 95%;
+        padding: 16px 0px;
+    }
+}
+
+@media screen and (max-width: 428px) {
+    ion-grid {
+        justify-content: start;
+        height: auto;
+    }
+
+    .main-content {
+        margin-top: 16px;
+    }
+
+    .form {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        ion-item {
+            font-size: 12.5px;
+            margin-top: 8px;
+
+            ion-icon[slot=start] {
+                font-size: 22px;
+                margin-inline-end: 20px;
+            }
+
+            ion-input {
+                --padding-end: 0px;
+            }
+        }
+
+        ion-item::part(native) {
+            height: 52px;
+            --min-height: 52px;
+        }
+
+        .input-warning {
+            bottom: 70px;
+            position: relative;
+            white-space: nowrap;
+        }
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .main-content {
+        width: 100%;
+    }
+
+    .form {
+        padding: 32px 8px 0px 8px;
+    }
+
+    .back-to-login-button-container {
+        padding: 0px 11px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    ion-icon {
+        font-size: 17px;
+    }
+
+    .form {
+        ion-item {
+            --inner-padding-end: 5px;
+        }
+
+        ion-icon[slot=start] {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .back-to-login-button-container {
+        ion-button {
+            font-size: 12px;
+            // --border-radius: 10px;
+            // min-height: 34px;
+        }
+    }
+}
+

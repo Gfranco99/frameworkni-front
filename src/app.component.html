@@ -1,0 +1,22 @@
+<ion-app>
+
+  <!-- MENU -->
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <ion-list id="inbox-list">
+        <ion-list-header><span class="user-logged-menu">Olá {{userlogged}}</span></ion-list-header>
+        <ion-note>Projeto Integral - {{appversion}}</ion-note>
+
+        <ion-menu-toggle auto-hide="false" *ngFor="let i of itensMenu">
+          <ion-item button (click)='goProcotolConsult(i)' style="font-size: 16px; color: black;">
+            <ion-icon slot="start" name="{{i.icon}}"></ion-icon>
+            <ion-label>{{i.text}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-app>

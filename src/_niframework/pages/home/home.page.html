@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      VALIDAÇÃO DE DOCUMENTO DIGITAL
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding background-light">
+
+  <div class="upload-bar">
+    <ion-button color="tertiary" expand="block" (click)="fileInput.click()">
+      📁 Selecionar arquivo .vdoc
+    </ion-button>
+    <input #fileInput type="file" (change)="onFileSelected($event)" accept=".vdoc" hidden />
+  </div>
+
+  <div class="modal-overlay" *ngIf="dados && showPreview && !showFullDetails">
+    <div class="modal-content section">
+      <div class="section-title"></div>
+      <div class="section-content">
+        <p>
+          Nome do Documento: {{ dados?.fileName || 'N/A' }}
+        </p>
+        <p>
+          Assinado por: {{ formattedSignerNames }}
+        </p>
+        <p>
+          Documento Válido:
+          <span [ngClass]="{'valido': dados?.isValid, 'invalido': !dados?.isValid}">
+            <ion-icon *ngIf="dados?.isValid" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="!dados?.isValid" name="close-circle-outline"></ion-icon>
+            {{ dados?.isValid ? 'Sim' : 'Não' }}
+          </span>
+        </p>
+        <p>
+          LPA Válido:
+          <span [ngClass]="{'valido': dados?.lpaValid, 'invalido': !dados?.lpaValid}">
+            <ion-icon *ngIf="dados?.lpaValid" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="!dados?.lpaValid" name="close-circle-outline"></ion-icon>
+            {{ dados?.lpaValid ? 'Sim' : 'Não' }}
+          </span>
+        </p>
+        <p>
+          PDF/A Válido:
+          <span [ngClass]="{'valido': dados?.pdfValid, 'invalido': !dados?.pdfValid}">
+            <ion-icon *ngIf="dados?.pdfValid" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="!dados?.pdfValid" name="close-circle-outline"></ion-icon>
+            {{ dados?.pdfValid ? 'Sim' : 'Não' }}
+          </span>
+        </p>
+        <p>
+          Tipo de Assinatura: {{ dados?.signatureType || 'N/A' }}
+        </p>
+        <p *ngIf="dados?.validationTime">
+          Assinado em: {{ dados?.validationTime | date:'dd/MM/yyyy HH:mm:ss' }}
+        </p>
+
+        <ion-button expand="block" size="small" color="primary" (click)="showAllDetails()">Ver Detalhes Completos</ion-button>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="showFullDetails">
+    <div class="section" *ngIf="dados">
+      <div class="section-title">Validação do Arquivo</div>
+      <div class="section-content">
+        <p>
+          Nome do Arquivo: {{ dados?.fileName }}
+        </p>
+        <p>
+          Data:
+           {{ dados?.validationTime | date:'dd/MM/yyyy HH:mm:ss' }}
+        </p>
+        <p>
+          Status Geral:
+          <span class="status" [ngClass]="{'valido': dados?.isValid, 'invalido': !dados?.isValid}">
+            <ion-icon *ngIf="dados?.isValid" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="!dados?.isValid" name="close-circle-outline"></ion-icon>
+            {{ dados?.isValid ? 'Válido' : 'Inválido' }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="section" *ngIf="dados">
+      <div class="section-title">Políticas de assinatura</div>
+      <div class="section-content">
+        <p>Versão Validador ITI: {{ dados?.softwareVersion }}</p>
+        <p>Tipo de Assinatura: {{ dados?.signatureType }}</p>
+        <p>
+          LPA:
+          <span [ngClass]="{'valido': dados?.lpaValid, 'invalido': !dados?.lpaValid}">
+            <ion-icon *ngIf="dados?.lpaValid" name="checkmark-circle-outline"></ion-icon>
+            <ion-icon *ngIf="!dados?.lpaValid" name="close-circle-outline"></ion-icon>
+            {{ dados?.lpaValid ? 'válido' : 'inválido' }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="section" *ngIf="assinaturas.length > 0">
+      <div class="section-title">Validação dos certificados</div>
+      <div class="section-content">
+        <table class="cert-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Certificado</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let assinatura of assinaturas; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ assinatura.endCertSubjectName || 'Certificado Desconhecido' }}</td>
+              <td>
+                <span [ngClass]="assinatura.signatureValid ? 'valido' : 'invalido'">
+                  {{ assinatura.signatureValid ? '✔️ Válido' : '❌ Inválido' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cert-status" [ngClass]="{'valido': todosCertificadosValidos, 'invalido': !todosCertificadosValidos}">
+          <ion-icon *ngIf="todosCertificadosValidos" name="checkmark-circle-outline"></ion-icon>
+          <ion-icon *ngIf="!todosCertificadosValidos" name="close-circle-outline"></ion-icon>
+          {{ todosCertificadosValidos ? 'Todos os certificados estão válidos.' : 'Alguns certificados são inválidos.' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section" *ngIf="assinaturas.length > 0">
+      <div class="section-title"> Assinaturas Digitais</div>
+      <div class="section-content">
+        <table class="cert-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Assinatura Válida</th>
+              <th>Nome do Certificado</th>
+              <th>ICP-Brasil</th>
+              <th>Gov.Br</th>
+              <th>Autoridade Certificadora</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let assinatura of assinaturas; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <span [ngClass]="assinatura.signatureValid ? 'valido' : 'invalido'">
+                  {{ assinatura.signatureValid ? '✔️' : '❌' }}
+                </span>
+              </td>
+              <td>{{ assinatura.endCertSubjectName || '---' }}</td>
+              <td>
+                <span [ngClass]="assinatura.isICP ? 'valido' : 'invalido'">
+                  {{ assinatura.isICP ? '✔️' : '❌' }}
+                </span>
+              </td>
+              <td>
+                <span [ngClass]="assinatura.iseGov ? 'valido' : 'invalido'">
+                  {{ assinatura.iseGov ? '✔️' : '❌' }}
+                </span>
+              </td>
+              <td>{{ assinatura.rootIssuer || '---' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section" *ngIf="dados">
+      <div class="pdf-status" [ngClass]="{'valido': dados?.pdfValid, 'invalido': !dados?.pdfValid}">
+        <ion-icon *ngIf="dados?.pdfValid" name="checkmark-circle-outline"></ion-icon>
+        <ion-icon *ngIf="!dados?.pdfValid" name="close-circle-outline"></ion-icon>
+        PDF/A {{ dados?.pdfValid ? 'válido' : 'inválido' }}
+      </div>
+    </div>
+
+    <div class="ion-text-center ion-padding-top">
+      <ion-button color="medium" (click)="showPreviewAgain()">Voltar para o Preview</ion-button>
+    </div>
+  </ng-container>
+
+</ion-content>

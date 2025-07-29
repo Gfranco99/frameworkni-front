@@ -1,0 +1,81 @@
+$light-indicator-activated: #08e700;
+$light-indicator-deactivated: #ff3333;
+$text-indicator-color: #ffffff;
+$text-level-user-color: #ffffff;
+$text-labels-size: 0.8em;
+$text-input-size: 1.5em;
+
+.status-indicator {
+    position: relative;
+    background-color: var(--ion-color-primary);
+    width: 60%;
+    height: 50px;
+    border-radius: 50px;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+    .content-indicator {
+        position: relative;
+        display: inline-flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: flex-start;
+    };
+
+    .light-indicator-activated {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: $light-indicator-activated;
+        border-radius: 100%;
+        padding: 10px;
+        left: 15px;
+        box-shadow: 0px 0px 6px $light-indicator-activated;
+    };
+
+    .light-indicator-deactivated {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: $light-indicator-deactivated;
+        border-radius: 100%;
+        padding: 10px;
+        left: 15px;
+        box-shadow: 0px 0px 6px $light-indicator-deactivated;
+    };
+
+    .text-indicator {
+        margin: auto;
+        text-transform: uppercase;
+        color: $text-indicator-color;
+    };
+};
+.user-level {
+    text-align: center;
+    width: 100%;
+    padding: 10px 0px;
+    cursor: pointer;
+
+    p {
+        margin-bottom: 0px
+    }
+};
+.gold-star {
+    color: gold;
+}
+.data-info {
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-top: 20px;
+    background-color: #80808091;
+    border-radius: 5px;
+    padding: 20px;
+    p {
+        color: var(--ion-color-light);
+        margin-bottom: 0px
+    }
+}

@@ -1,0 +1,6 @@
+COMMIT_MSG=$(git log -1 --pretty=%B)
+
+if echo "$COMMIT_MSG" | grep -Eq "^(version):"; then  
+    git fetch --tags
+    echo "Atualizando tags..."
+fi

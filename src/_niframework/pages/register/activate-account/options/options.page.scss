@@ -1,0 +1,30 @@
+$color-10risp: #1B5B47;
+
+ion-grid{
+  text-align: center;
+}
+
+.texto{
+  font-weight: bold;
+}
+
+ion-card{
+  display: inline-flex;
+  flex-wrap: wrap;
+  // background: white;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 25px;
+  height: 150px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    border: solid 1px $color-10risp;
+  }
+}
+
+ion-card-title {
+  color: $color-10risp;
+}

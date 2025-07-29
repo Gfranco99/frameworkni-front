@@ -1,0 +1,57 @@
+<div *ngIf="anexosArray.length > 0">
+  <ion-grid [fixed]="true">
+  
+     <!--<ion-card *ngFor="let anexo of anexosArray; let i = index" color="light"
+      target="_blank" href='{{anexo.Hash}}'> -->
+    <ion-card *ngFor="let anexo of anexosArray; let i = index" color="light"
+    (click)="getPDF(anexo.Hash, anexo.NumeroRegistro + '-' + anexo.Descricao)">
+      <ion-row>
+          <ion-col size="8"><ion-card-header>
+        <ion-card-subtitle>Num. Registro:  <b>{{anexo.NumeroRegistro}}</b></ion-card-subtitle>
+        <ion-card-title>{{anexo.Descricao}}</ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+        
+            <ion-text class="f_smaller">
+              <p>{{anexo.Data | date :'dd/MM/yyyy hh:mm'}}</p>
+            </ion-text>
+          
+      </ion-card-content>
+    </ion-col>
+          <ion-col size="4" class="ion-text-right">
+            <ion-icon color='secondary' name="download-outline" size="large"></ion-icon>
+          </ion-col>
+        </ion-row>
+    </ion-card> 
+  
+    <!--<ion-card *ngFor="let andamento of tituloModel?.Andamentos; let i = index" color="light" class="accordeon-list">
+      <ion-card-header tappable (click)="toggle(i)" *ngIf="andamento.Anexos.length" >
+        <ion-row>
+          <ion-col size=10>
+            <ion-card-subtitle>{{andamento.DataAndamento | date :'dd/MM/yyyy'}}</ion-card-subtitle>
+            <ion-card-title>{{andamento.Descricao}}</ion-card-title>
+          </ion-col>
+          <ion-col  style="text-align: end; margin-right: 20px;">
+            <ion-icon name="caret-down-outline" *ngIf="!andamento.open" class="icone"></ion-icon>
+            <ion-icon name="caret-up-outline" *ngIf="andamento.open" class="icone"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+      <ion-card-header *ngIf="!andamento.Anexos.length" >
+        <ion-card-subtitle>{{andamento.DataAndamento | date :'dd/MM/yyyy'}}</ion-card-subtitle>
+        <ion-card-title>{{andamento.Descricao}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="andamento.open">
+        <ion-list *ngFor="let anexo of andamento.Anexos">
+          <ion-item (click)="getPDF(anexo.Hash, anexo.NumeroRegistro + '-' + anexo.Descricao)">
+            <ion-label class="ion-text-wrap">{{anexo.Descricao}}</ion-label>
+            <ion-icon name="download-outline" size="large" color="secondary"></ion-icon>
+          </ion-item>
+        </ion-list>
+        
+      </ion-card-content> 
+    </ion-card>-->
+  </ion-grid>
+  </div>
+  

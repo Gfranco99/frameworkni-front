@@ -1,0 +1,17 @@
+<div *ngIf="weatherResult" class="ion-padding">
+  <ion-card *ngFor="let andamento of data; let i = index" color="light" (click)='goNoticiaDetail(andamento.NoticiaId)'>
+    <ion-card-header>
+      <ion-card-subtitle>{{andamento.Data | date :'dd/MM/yyyy'}}</ion-card-subtitle>
+      <ion-card-title style="text-align:center"><b>{{andamento.Titulo}}</b></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-text [innerHTML]="andamento.Introducao">
+        <p>{{andamento.Introducao}}</p>
+      </ion-text>
+      <div style="text-align: right; margin-right: 2%;">
+        <ion-text color="primary"><b>Ler Mais ></b></ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>

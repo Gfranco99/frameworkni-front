@@ -1,0 +1,222 @@
+{
+  "title": "Procuração para Retirada de Notificação",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "INSTRUÇÕES",
+      "controls": [
+        {
+          "name": "intro1",
+          "type": "paragraph",
+          "value": "1. Não podendo comparecer pessoalmente, utilize a procuração abaixo. Não se esqueça de preencher os claros, datar, assinar e reconhecer firma.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "intro2",
+          "type": "paragraph",
+          "value": "2. A pessoa que vier em seu nome retirar a notificação deverá ser maior de 18 anos, munido de documento de identidade.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "intro3",
+          "type": "paragraph",
+          "value": "3. No caso de PESSOA JURÍDICA (empresas, sociedades, firmas etc) deverá ser apresentado o contrato social para comprovação da representação.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "PROCURAÇÃO",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome Outorgante",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "controls": [
+        {
+          "name": "complementar",
+          "type": "paragraph",
+          "value": "não podendo comparecer ao Serviço Registral para retirada da notificação de que trata este aviso, OUTORGO, por este instrumento particular, poderes para que o Sr(a)",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "nomeCompleto",
+          "label": "Nome Outorgado",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "complementar1",
+          "type": "paragraph",
+          "value": "possa proceder à retirada da notificação a mim endereçada, dando-me por ciente de todo o conteúdo da notificação.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "show": "print",
+          "extras": {
+            "sizePrint": 12
+          }
+        },
+        {
+          "name": "rodape",
+          "type": "paragraph",
+          "value": " ATENÇÃO: É obrigatório e indispensável o reconhecimento de firma do notificado na procuração.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    }
+  ]
+}

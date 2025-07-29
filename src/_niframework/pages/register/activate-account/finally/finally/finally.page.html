@@ -1,0 +1,25 @@
+<!-- Página que apresenta os componentes voltados a mensagens de finalização de um fluxo. -->
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <div class="back-icon">
+      <ion-router-link href="#/login">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+
+      <!-- Aqui entra o component definido no inicio-->
+      <ion-grid [fixed]="true">
+        <app-finally-email *ngIf="option === 'email'"></app-finally-email>
+        <!-- <app-finally-sms *ngIf="option === 'sms'"></app-finally-sms> -->
+      </ion-grid>
+
+    </div>
+  </ion-grid>
+</ion-content>

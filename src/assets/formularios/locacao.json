@@ -1,0 +1,249 @@
+{
+  "title": "Averbação/Registro de Locação/Caução Locatícia",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "saudacao",
+          "type": "title",
+          "value": "Ilmo. Senhor 10º Oficial de Registro de Imóveis da Capital do Estado de São Paulo.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Requerente",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome completo",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "estadocivil",
+          "label": "Estado civil",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "nacionalidade",
+          "label": "Nacionalidade",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "profissao",
+          "label": "Profissão",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "filiacao",
+          "label": "Filiação",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "introMatricula",
+          "value": "vem respeitosamente requerer a V. Senhoria, seja(m) efetuado(s) o(s) ato(s) abaixo assinalado(s), com relação ao(s) imóvel(eis) objeto da(s) seguinte(s) matrícula(s):",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "matriculaTranscricao",
+          "label": "Matrículas",
+          "value": "",
+          "type": "textarea",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12,
+            "showLabel": false
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "reglocacaocheck",
+          "type": "checkbox",
+          "label": "Registro da Locação nos termos do Art. 8º da Lei 8.245/91 (Cláusula de Vigência).",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "reglocacao1",
+          "type": "paragraph",
+          "value": "Obs. Quando do contrato de locação constar 'Cláusula de vigência' e o imóvel locado pertencer a esta circunscrição, não poderá ser dispensado o seu registro.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+          {
+          "name": "avlocacaocheck",
+          "type": "checkbox",
+          "label": "Averbação da Locação nos termos do Art. 33º da Lei 8.245/91 (Exercício do Direito de Preferência).",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "avcacaolocaticiacheck",
+          "type": "checkbox",
+          "label": "Averbação da Caução locatícia nos termos do Art. 38º, § 1º da Lei 8.245/91.",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "show": "print",
+          "extras": {
+            "sizePrint": 12
+          }
+        },
+        {
+          "name": "rodape",
+          "type": "paragraph",
+          "value": "Reconhecer a(s) firma(s) do(a,os,as) requerente(s) ou assinar(em) o requerimento perante o funcionário do cartório. Se pessoa jurídica apresentar prova de representação em nome do signatário.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    }
+  ]
+}

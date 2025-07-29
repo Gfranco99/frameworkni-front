@@ -1,0 +1,56 @@
+<ion-content color="medium" class="ion-padding">
+
+  <!-- Indicador de status ativo/inativo -->
+  <ion-item color="medium" lines="full">
+    <div class="status-indicator">
+      <div class="content-indicator">
+        <div
+        [ngClass]="{
+          'light-indicator-deactivated': userData['ativo'] === false,
+          'light-indicator-activated': userData['ativo'] === true
+        }">
+      </div>
+        <ion-text class="text-indicator" *ngIf="userData['ativo'] === true">ativo</ion-text>
+        <ion-text class="text-indicator" *ngIf="userData['ativo'] === false">inativo</ion-text>
+      </div>
+    </div>
+  </ion-item>
+  
+  <!-- Nivel de cadastro com estrelas -->
+  <ion-item color="medium" lines="full">
+    <ion-text class="user-level" title="As estrelas indicam se suas informações estão completas, 3 entrelas é o nível máximo.">
+      <p>Nível de cadastro</p>
+      <ion-icon name="star" class="gold-star"></ion-icon>
+      <ion-icon name="star" class="gold-star"></ion-icon>
+      <ion-icon name="star" class="gold-star"></ion-icon>
+    </ion-text>
+  </ion-item>
+
+  <!-- Lista de informações do usuário -->
+  <ion-item-group class="data-info">
+    <ion-text>
+      <p>Nome</p>
+      <h3>{{userData?.nome}}</h3>
+    </ion-text>
+    <ion-text>
+      <p>Documento</p>
+      <h3>{{userData?.documento}}</h3>
+    </ion-text>
+    <ion-text>
+      <p>Telefone</p>
+      <h3>{{userData?.telefone}}</h3>
+    </ion-text>
+    <ion-text>
+      <p>Email</p>
+      <h3>{{userData?.email}}</h3>
+    </ion-text>
+    <ion-text show="userData.idioma">
+      <p>Idioma</p>
+      <h3>{{userData?.idioma}}</h3>
+    </ion-text>
+    <ion-text show="userData.idioma">
+      <p>Código do usuário</p>
+      <h3>{{userData?.codigoUsuario}}</h3>
+    </ion-text>
+  </ion-item-group>
+</ion-content>        

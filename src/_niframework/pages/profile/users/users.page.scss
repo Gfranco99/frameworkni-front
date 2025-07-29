@@ -1,0 +1,64 @@
+#user-not-found {
+    position: absolute;
+    z-index: 1000;
+    margin-left: 13px;
+    font-style: italic;
+    font-weight: lighter;
+}
+ion-grid {
+    height: 100vh;
+}
+ion-list {
+    background-color: var(--ion-color-secondary);
+}
+.height {
+    height:100%;
+}
+.search-bar-margin-top {
+    margin-top: 32px;
+}
+.custom-size {
+    height: 101%;
+}
+.cards-container {
+    margin-top: 90px;
+}
+ion-searchbar {
+    padding-bottom: 0px;
+}
+.search-data {
+    position: absolute;
+    z-index: 1000;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    border: solid 1px #0000008f;
+    background-color: white;
+    margin-left: 7px;
+    margin-right: -12px;
+    ion-item {
+        font-size: 11px;
+        :hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+ion-searchbar {
+    position: relative;
+    width: 100%;
+}
+#line-options {
+    padding-left: 8px;
+    padding-right: 8px;
+    bottom: 0;
+}
+.number-result-info {
+    margin-left: 8px;
+}
+ion-badge {
+    transition: .2s;
+    font-weight: lighter;
+    margin-left: 10px;
+}

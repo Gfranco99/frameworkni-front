@@ -1,0 +1,116 @@
+<ion-content color="medium">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button [text]="" defaultHref="" (click)="back()"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Filtro de usuários</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid class="ion-padding">
+
+    <!-- Campos de busca nome -->
+    <ion-row class="ion-align-items-center ion-justify-items-center ion-padding">
+      <ion-col size="6">
+        <form [formGroup]="searchForm">
+
+          <ion-item color="medium">
+            <ion-label> Usuário: </ion-label>
+            <ion-input [(ngModel)]="nameInputValue" formControlName="userName"></ion-input>
+
+          </ion-item>
+        </form>
+      </ion-col>
+      <ion-col size="3">
+        <ion-item color="medium">
+          <ion-label>Grupo:</ion-label>
+          <ion-select [(ngModel)]="groupInputValue" interface="popover">
+            <ion-select-option value="" selected>Nenhum</ion-select-option>
+            <ion-select-option [value]="i['idGrupo']"
+              *ngFor="let i of groupsFromDataBase">{{i['nomeGrupo']}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-col>
+      <ion-col size="3">
+        <ion-item color="medium">
+          <ion-label>Perfil:</ion-label>
+          <ion-select [(ngModel)]="profileInputValue" interface="popover">
+            <ion-select-option value="">Nenhum</ion-select-option>
+            <ion-select-option [value]="i['idPerfil']"
+              *ngFor="let i of profilesFromDataBase">{{i['nomePerfil']}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+
+      <div class="search-buttons">
+        <ion-button (click)="filterUser(nameInputValue, groupInputValue, profileInputValue)" size="small">
+          <ion-icon slot="start" name="search-outline"></ion-icon>
+          Buscar
+        </ion-button>
+
+        <ion-button (click)="cleanSearch()" size="small">
+          <ion-icon slot="start" name="refresh-outline"></ion-icon>
+          Limpar</ion-button>
+      </div>
+
+    </ion-row>
+
+    <!-- Tabela de dados -->
+    <ion-row class="ion-padding">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <!-- Coluna Código do Usuário -->
+        <ng-container matColumnDef="codigoUsuario">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Código do usuário </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.codigoUsuario}} </td>
+        </ng-container>
+        <!-- Coluna nome -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.nome}} </td>
+        </ng-container>
+        <!-- Coluna documento -->
+        <ng-container matColumnDef="documento">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF/CNPJ </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.documento | cpfCnpj }} </td>
+        </ng-container>
+        <!-- Coluna grupos -->
+        <ng-container matColumnDef="grupos">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Grupos </th>
+          <td mat-cell *matCellDef="let element"> <span *ngFor="let i of element.grupos"> {{ i.nomeGrupo }} / </span>
+          </td>
+        </ng-container>
+        <!-- Coluna grupos -->
+        <ng-container matColumnDef="perfis">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Perfis </th>
+          <td mat-cell *matCellDef="let element"> <span *ngFor="let i of element.perfis"> {{ i.nomePerfil }} / </span>
+          </td>
+        </ng-container>
+        <!-- Coluna ativo -->
+        <ng-container matColumnDef="ativo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Situação </th>
+          <td mat-cell *matCellDef="let element"> {{element.usuario.ativo | ativoInativo}} </td>
+        </ng-container>
+        <!-- Coluna Editar dados -->
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef> Detalhes </th>
+          <td mat-cell *matCellDef="let element" class="edit-icon">
+            <ion-button title="Altere permissões, perfis e grupos do usuário" shape="round" mode="ios" color="dark"
+              size="small" (click)="goToUserPage(element.usuario)"> <ion-icon slot="start" class="edit-icon"
+                name="open-outline" size="small"></ion-icon>
+              Detalhes
+            </ion-button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ion-row>
+
+    <!-- Páginação da tabela -->
+    <mat-paginator #paginator [length]="100" [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </ion-grid>
+</ion-content>

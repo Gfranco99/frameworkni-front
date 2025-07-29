@@ -1,0 +1,29 @@
+<ion-content color="light" padding class="animated fadeIn login auth-page">
+  <ion-grid [fixed]="true">
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../../assets/img/logo.webp" />
+      </div>
+
+      <ion-text color="primary">
+        <h5>Para sua comodidade, esse aplicativo pode ser instalado na tela inicial do seu dispositivo. Pressione o
+          botão Instalar App se essa for sua vontade, ao contrário pressione o botão Fechar</h5>
+      </ion-text>
+
+      <ion-icon class="bigger" src="../../../../assets/img/undraw_terms.svg"></ion-icon>
+
+      <div style="margin-top: 50px;">
+        <ion-row>
+          <ion-col size="5">
+            <ion-button expand="block" color="primary" (click)="closeModal('true')">Instalar App</ion-button>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+          <ion-col size="5">
+            <ion-button expand="block" color="primary" fill="outline" (click)="closeModal('false')">Fechar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-grid>
+</ion-content>

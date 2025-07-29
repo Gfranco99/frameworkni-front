@@ -1,0 +1,49 @@
+<ion-toolbar color="primary">
+  <ion-title>Dúvida</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="close()">
+      <ion-icon name="close" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content >
+  <ion-grid [fixed]="true">
+
+    <div class="animated fadeInDown ion-text-center ion-padding">
+      <ion-text color="primary"><b>{{duvida.Pergunta}}</b></ion-text>
+    </div>
+
+    <div scrolly="true" class="lista">
+      <ion-card class="card">
+        <ion-text [innerHTML]="duvida.Texto" color="primary">
+          {{duvida.Texto}}
+        </ion-text>
+      </ion-card>
+    </div>
+
+    <div style='margin-top: -10px;'>
+      <ion-row *ngIf="isMobileDevice"  style="text-align: center;">
+        <ion-col size='6'><ion-button (click)='compartilhar()' class="botoes">Compartilhar</ion-button></ion-col>
+        <ion-col><ion-button (click)='print()' class="botoes">Baixar PDF</ion-button></ion-col>
+      </ion-row>
+      <ion-row *ngIf="!isMobileDevice"  style="text-align: center;">
+        <ion-col><ion-button (click)='print()' class="botoes2">Baixar PDF</ion-button></ion-col>
+      </ion-row>
+      <ion-row style="text-align: center">
+        <ion-col><ion-button (click)='presentAlert()' class="botoes2">Enviar por E-mail</ion-button></ion-col>
+      </ion-row>
+    </div>
+
+    <!-- html para o pdf -->
+    <div class="esconde">
+      <div id="pdfDuvida">
+        <h2>{{duvida.TipoDuvida.Descricao}}</h2><br>
+        <h4>{{duvida.Pergunta}}</h4>
+        <p [innerHTML]="duvida.Texto">{{duvida.Texto}}</p>
+      </div>
+    </div>
+    
+  </ion-grid>
+</ion-content>
+

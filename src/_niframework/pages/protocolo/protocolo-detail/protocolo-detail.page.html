@@ -1,0 +1,189 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="" defaultHref={{pageReturn}}></ion-back-button>
+    </ion-buttons>
+    <ion-title>Andamentos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)='orderList()'><ion-icon name="swap-vertical-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content pullingText="Puxe para Atualizar" refreshingSpinner="lines" refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid [fixed]="true">
+
+    <div *ngIf="tituloModel?.Anexos?.length > 0 && protocolType==='1'">
+      <ion-segment [(ngModel)]="nav_selected" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="segdetails">
+          Detalhes
+        </ion-segment-button>
+        <ion-segment-button value="seganexos">
+          Anexos
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div *ngIf="(tituloModel && nav_selected === 'segdetails')">
+      <ion-row>
+        <ion-col>
+          <ion-text color="primary">
+            <h3><strong>{{tituloModel?.NumeroProtocolo}}</strong></h3>
+          </ion-text>
+          <ion-text>
+            <h5>{{tituloModel?.NomeApresentante}}</h5>
+          </ion-text>
+
+          <div class="infoProtocolo">
+            <ion-text>
+              <p>{{tituloModel?.Natureza}}</p>
+            </ion-text>
+            <ion-text color="secondary">
+              <p>Depósito: R$ {{tituloModel?.ValorDeposito}}</p>
+            </ion-text>
+            <ion-text color="secondary">
+              <p>Custas: R$ {{tituloModel?.ValorCustas}}</p>
+            </ion-text>
+            <ion-text color="secondary">
+              <p>Data prevista para retirada: {{tituloModel?.DataPrevistaRetirada | date :'dd/MM/yyyy'}}</p>
+            </ion-text>
+          </div>
+
+
+          <!--
+            REMOVIDO A PEDIDO DO CLIENTE - NUNES 24/02/2022
+          <ion-text *ngIf="tituloModel.UrlBoleto" color="secondary">
+            <ion-row>
+              <div>
+                <h5><b>Boleto disponível</b></h5>
+              </div>
+              <div class="boleto">
+                <ion-button size='small' (click)='navigateTo(tituloModel.UrlBoleto)'>Ver Boleto</ion-button>
+              </div>
+            </ion-row>
+          </ion-text>
+           -->
+
+        </ion-col>
+      </ion-row>
+
+      <ion-card *ngFor="let andamento of tituloModel?.Andamentos; let i = index" color="light">
+        <ion-card-header>
+          <ion-card-subtitle>{{andamento.DataAndamento | date :'dd/MM/yyyy'}}</ion-card-subtitle>
+          <ion-card-title>{{andamento.Descricao}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-text *ngIf="andamento.Observacao" class="f_smaller">
+            <p>{{andamento.Observacao}}</p>
+          </ion-text>
+          <div *ngIf="andamento.Descricao === 'Emissão de boleto'">
+            <ion-row>
+              <div class="boleto">
+                <ion-button size='small' (click)='navigateTo(tituloModel.UrlBoleto)'>Ver Boleto</ion-button>
+              </div>
+            </ion-row>
+          </div>
+
+          <div *ngIf="andamento.Nota && protocolType==='1'">
+            <div *ngFor="let devolutiva of andamento.Nota.NotaDevolutivaDict; let j = index" class="ion-text-justify">
+              <ion-text class="f_smaller">
+                {{devolutiva.descricao}}
+              </ion-text>
+            </div>
+          </div>
+
+          <ion-list *ngFor="let anexo of andamento.Anexos">
+            <ion-item (click)="getPDF(anexo.Hash, anexo.NumeroRegistro + '-' + anexo.Descricao)">
+              <ion-label class="ion-text-wrap">{{anexo.Descricao}}</ion-label>
+              <ion-icon name="download-outline" size="large" color="secondary"></ion-icon>
+            </ion-item>
+          </ion-list>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="(tituloModel && nav_selected === 'seganexos')">
+      <app-protocolo-anexos [tituloModel]='tituloModel'></app-protocolo-anexos>
+    </div>
+
+    <!-- html para o pdf -->
+    <div class="esconde">
+      <div id="pdfProtocolo">
+        <h2 style="text-align: center;">{{protocolTypeName}}</h2><br>
+        <h4>Protocolo Número: {{protocolNumber}} </h4>
+        <p>{{tituloModel?.NomeApresentante}}</p><br>
+        <p>{{tituloModel?.Natureza}} </p>
+        <p>Depósito: R${{tituloModel?.ValorDeposito}} </p>
+        <p>Custas: R${{tituloModel?.ValorCustas}} </p>
+        <p>Data Prevista para Retirada: {{tituloModel?.DataPrevistaRetirada | date :'dd/MM/yyyy'}} </p>
+        <br><br>
+        <br><br>
+        <table style="width: 80%;">
+          <tr>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Observação</th>
+          </tr>
+          <div *ngFor="let andamento of tituloModel?.Andamentos.slice().reverse(); let i = index">
+            <tr>
+              <td>{{andamento?.Descricao}}</td>
+              <td>{{andamento?.DataAndamento | date :'dd/MM/yyyy'}}</td>
+              <td>{{andamento?.Observacao}}
+                <div *ngIf="andamento.Nota && protocolType==='1'">
+                  <div *ngFor="let devolutiva of andamento.Nota.NotaDevolutivaDict; let j = index" class="ion-text-justify">
+                      {{devolutiva.descricao}}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </div>
+        </table>
+
+      </div>
+    </div>
+  </ion-grid>
+
+
+
+  <ion-fab *ngIf="!protocolConsultErrorView" vertical="bottom" horizontal="end" edge slot="fixed"
+    style="margin-bottom: 50px;">
+    <ion-fab-button color="secondary">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button *ngIf="isMobileDevice"  (click)="share()" data-desc="Compartilhar">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="generatePDF()" data-desc="Gerar PDF">
+        <ion-icon name="document-attach-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="isLogged && isRegistred" (click)="presentAlert()" data-desc="Remover da conta">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button *ngIf="!isRegistred && !isPedidoCertidao" (click)="alertaSalvo()" data-desc="Salvar na conta">
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-fab-button>
+      <!-- <ion-fab-button data-desc="Baixar Anexos"><ion-icon name="download-outline"></ion-icon></ion-fab-button> -->
+    </ion-fab-list>
+  </ion-fab>
+
+
+  <div *ngIf="protocolConsultErrorView" padding-horizontal text-center class="animated fadeInDown ion-text-center">
+    <img width="50%" src="../../../assets/img/undraw_nodata.svg">
+    <ion-text color="primary">
+      <h2>{{PROTOCOL_ERROR}}</h2>
+    </ion-text>
+  </div>
+</ion-content>
+
+
+

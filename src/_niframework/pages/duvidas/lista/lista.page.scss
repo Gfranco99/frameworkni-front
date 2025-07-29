@@ -1,0 +1,37 @@
+.icone{
+    font-size: 32px;
+    color: #1B5B47;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.search{
+    --icon-color: #BEA859;
+    --color: #BEA859;
+    --background: white;
+    --border-radius: 15px;
+    padding: 10px;
+    margin-top: -10px;
+}
+
+.filter{
+    --color: #BEA859;
+    --background: white;
+    --border-radius: 15px;
+    padding: 10px;
+    --margin-bottom: -10px;
+
+}
+
+ion-select-option {
+    width: 100%;
+    max-width: 100%;
+}
+
+ion-card-subtitle {
+  ion-label {
+    color: gray;
+  }
+}

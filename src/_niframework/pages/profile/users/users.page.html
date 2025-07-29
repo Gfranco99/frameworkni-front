@@ -1,0 +1,117 @@
+<ion-content color="medium">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button [text]="" defaultHref="" (click)="back()"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Controle de usuário</ion-title>
+    </ion-toolbar>
+  </ion-header> 
+
+  <ion-grid class="ion-no-padding">
+    <ion-row class="height">
+      <!-- Painel de iformações lateral -->
+      <ion-col
+      class="custom-size" 
+      size-xs="12"
+      size-sm="5.5"
+      size-lg="4"
+      size-lg="4"
+      size-xl="3"
+      >
+        <app-info-panel [userData]="currentUser"></app-info-panel>
+      </ion-col>
+    
+      <!-- Campo de pesquisa -->
+      <ion-col class="ion-padding">
+        <ion-col>
+          <ion-item-group
+            class="animated fadeInUp search-bar-margin-top"
+            color="secondary"
+            lines="full"
+            > 
+              <!-- Pesquisa usuário -->
+              <ion-badge
+                *ngIf="temporaryDataSearch.length > 0"
+                color="primary"
+                >Resultado: {{temporaryDataSearch.length}}
+              </ion-badge>
+
+              <form [formGroup]="onSearchForm">
+                <ion-searchbar
+                  id="search-bar"
+                  placeholder="Buscar usuário"
+                  debounce="1000"
+                  (ionChange)="getUserList($event)"
+                  animated="true"
+                  formControlName="userName"
+                ></ion-searchbar>
+              </form>
+
+              <ion-list class="search-data" *ngIf="temporaryDataSearch">
+              <ion-item
+                *ngFor="let user of temporaryDataSearch"
+                (click)="selectUserFromList(user)"
+                lines="none"
+              >
+                <ion-label>{{user.nome}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-item-group>
+        </ion-col>
+    
+        <!-- Cards de opções de controle do usuário -->
+        <ion-col size-xs="12">
+          <div class="cards-container">
+            <app-options-card
+              cardTitle="Perfis"
+              keyNameItem="nomePerfil"
+              keyDescriptionItem="descricaoPerfil"
+              idElement="idPerfil"
+              [itemsFromDataBaseToModal]="profilesFromDataBase"
+              [currentDataAttributes]="currentUserProfiles"
+              [currentUser]="currentUser"
+              [unlockFunctions]="unlockFunctions"
+            ></app-options-card>
+            
+            <app-options-card
+              cardTitle="Grupos"
+              keyNameItem="nomeGrupo"
+              keyDescriptionItem="descricaoGrupo"
+              idElement="idGrupo"
+              [itemsFromDataBaseToModal]="getGroupsFromDataBase"
+              [currentDataAttributes]="currentUserGroups"
+              [currentUser]="currentUser"
+              [unlockFunctions]="unlockFunctions"
+            ></app-options-card>
+            
+            <app-options-card
+              cardTitle="Permissões"
+              keyNameItem="nomePermissao"
+              keyDescriptionItem="descricaoPermissao"
+              idElement="idPermissao"
+              [itemsFromDataBaseToModal]="getPermissionsFromDataBase"
+              [currentDataAttributes]="currentUserPermissions"
+              [currentUser]="currentUser"
+              [unlockFunctions]="unlockFunctions"
+            ></app-options-card>
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-row id="line-options" class="justify-content-end">
+
+            <ion-button
+              (click)="updateTableUserFilterRequest()"
+              size="small"
+              routerLink="/app/users-filter"
+              >
+              filtro avançado
+              <ion-icon slot="start" name="filter-outline" size="small"></ion-icon>
+            </ion-button>
+          
+          </ion-row>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

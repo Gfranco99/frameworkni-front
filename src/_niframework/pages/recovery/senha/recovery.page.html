@@ -1,0 +1,65 @@
+<ion-content>
+  <ion-grid>
+
+    <div class="main-content">
+      <ion-text class="title">
+        Não lembra sua senha?
+      </ion-text>
+
+      <ion-text class="info">
+        Informe o e-mail e o CPF/CNPJ cadastrados em sua conta. Um link para redefinir sua senha
+        será enviado para o e-mail associado.
+      </ion-text>
+
+      <form [formGroup]="PasswordRecoveryForm" (ngSubmit)="goRecoveryPassword(1)" class="form">
+        <ion-item lines="none" mode="md"
+          [ngClass]="{ 'invalid' : PasswordRecoveryForm.controls.email.invalid && PasswordRecoveryForm.controls.email.touched }">
+          <ion-icon name="mail" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" inputmode="email" formControlName="email"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': PasswordRecoveryForm.controls.email.invalid && PasswordRecoveryForm.controls.email.touched }"
+          [style.visibility]="PasswordRecoveryForm.controls.email.invalid && PasswordRecoveryForm.controls.email.touched ? 'visible' : 'hidden' ">
+          Informe um endereço de e-mail válido.
+        </div>
+
+        <ion-item lines="none" mode="md"
+          [ngClass]="{ 'invalid' : PasswordRecoveryForm.controls.documento.invalid && PasswordRecoveryForm.controls.documento.touched }">
+          <ion-icon name="id-card" slot="start" aria-hidden="true"></ion-icon>
+          <ion-label position="floating">CPF/CNPJ</ion-label>
+          <ion-input type="text" inputmode="numeric" maxlength="18" formControlName="documento"
+            [brmasker]="{person: true}" (keypress)="utils.numberOnly($event)"></ion-input>
+        </ion-item>
+        <div class="input-warning"
+          [ngClass]="{ 'animation': PasswordRecoveryForm.controls.documento.invalid && PasswordRecoveryForm.controls.documento.touched }"
+          [style.visibility]="PasswordRecoveryForm.controls.documento.invalid && PasswordRecoveryForm.controls.documento.touched ? 'visible' : 'hidden' ">
+          Informe um CPF ou CNPJ válido.
+        </div>
+
+        <ion-row class="send-email-button-container">
+          <ion-col size="2"></ion-col>
+          <ion-col size="8" class="ion-no-padding">
+            <ion-button expand="block" color="primary" type="submit" [disabled]="!PasswordRecoveryForm.valid">
+              Enviar
+            </ion-button>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+        </ion-row>
+      </form>
+
+      <ion-row class="back-to-login-button-container">
+        <ion-col size="2"></ion-col>
+        <ion-col size="8">
+          <ion-router-link href="#/login">
+            <ion-button expand="block" color="primary" fill="outline">
+              Retornar ao Login
+            </ion-button>
+          </ion-router-link>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>

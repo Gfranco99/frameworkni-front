@@ -1,0 +1,48 @@
+<!-- Apresenta as opções de ativação de conta. -->
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <div class="back-icon">
+      <ion-router-link href="#/app/profile/details">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+      </div>
+    </div>
+
+    <h3 no-margin>
+      <ion-text color="light">
+        <ion-text color="primary">Validar cadastro</ion-text>
+      </ion-text>
+    </h3>
+    <div class="animated fadeInDown ion-text-center ion-padding">
+      <ion-text color="primary">Seu cadastro precisa ser validado, antes do primeiro acesso.</ion-text>
+    </div>
+
+    <ion-card (click)="setOptionValidation('email')">
+      <ion-text>
+        <h3>E-mail</h3>
+        <p>Validação por e-mail</p>
+      </ion-text>
+    </ion-card>
+
+    <ion-card (click)="setOptionValidation('sms')">
+      <ion-text>
+        <h3>SMS</h3>
+        <p>Receba um código de ativação</p>
+      </ion-text>
+    </ion-card>
+
+    <ion-card (click)="setOptionValidation('whatsapp')">
+      <ion-text>
+        <h3>Whatsapp</h3>
+        <p>Receba um código de ativação</p>
+      </ion-text>
+    </ion-card>
+
+  </ion-grid>
+</ion-content>

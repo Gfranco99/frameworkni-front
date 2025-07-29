@@ -1,0 +1,234 @@
+<ion-content color="secondary">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button [text]="" defaultHref="/app/groups" (click)="updateGroupsDataTable()"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Grupos</ion-title>
+    </ion-toolbar>
+
+  </ion-header>
+  <ion-grid class="ion-padding">
+    <!-- <ion-text color="primary" class="ion-text-center">
+      <h1>Dados do grupo</h1>
+    </ion-text> -->
+    <ion-row class="">
+      <ion-col size="12">
+        <form [formGroup]="onFormGroups">
+        <ion-item color="secondary">
+          <ion-label position="floating">
+            <ion-icon name="people-outline"></ion-icon>
+            Nome do grupo*
+          </ion-label>
+          <ion-input [(ngModel)]="currentGroup.nomeGrupo" formControlName="nameGroup"></ion-input>
+        </ion-item>
+      </form>
+      
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+      
+       <form [formGroup]="onFormGroups">
+        <ion-item color="secondary">
+          <ion-label position="floating">
+            <ion-icon name="reader-outline"></ion-icon>
+            Descrição*
+          </ion-label>
+          <ion-input [(ngModel)]="currentGroup.descricaoGrupo" formControlName="descriptionGroup"></ion-input>
+        </ion-item>
+      </form>
+      
+      
+      </ion-col>
+    </ion-row>
+
+    <ion-button
+      expand="block"
+       *ngIf="currentGroup.ativo"
+       (click)="updateNameGroup()"
+    >Atualizar</ion-button>
+    
+    <ion-button
+      expand="block"
+      *ngIf="!currentGroup.ativo"
+      (click)="createNewGroup(1)"
+      [disabled]="!onFormGroups.valid"
+    >Criar novo grupo</ion-button>
+
+    <ion-text color="primary" class="ion-text-center ion-padding">
+      <h2>Definições</h2>
+      
+      <p>Ajustes personalizados para o grupo.</p>
+    </ion-text>
+    <mat-accordion>
+      <mat-expansion-panel
+      [expanded]="currentGroup.ativo"
+      [disabled]="!currentGroup.ativo"
+      
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Permissões
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ion-row class="ion-padding">
+          <table
+            mat-table [dataSource]="permissionsDataSource"
+            class="mat-elevation-z8"
+            matSort
+            >
+            <!-- Coluna id -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.idPermissao}} </td>
+            </ng-container>
+            <!-- Coluna nome -->
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+              <td mat-cell *matCellDef="let element"> {{element.nomePermissao}} </td>
+            </ng-container>
+            <!-- Coluna descrição -->
+            <ng-container matColumnDef="ds">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Descrição </th>
+              <td mat-cell *matCellDef="let element"> {{element.descricaoPermissao}} </td>
+            </ng-container>
+            <!-- Coluna Editar ativar permissões -->
+            <ng-container matColumnDef="remover">
+              <th mat-header-cell *matHeaderCellDef>Desativar/Ativar</th>
+              <td mat-cell *matCellDef="let element; let i = index" class="edit-icon">
+                <ion-toggle
+                  [checked]="element['checked']"
+                  (click)="addPermissions($event, element.idPermissao)"
+                ></ion-toggle>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsOfPermissions"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsOfPermissions;"></tr>
+          </table>
+        </ion-row>
+
+         <!-- Páginação da tabela -->
+        <mat-paginator
+          #paginator
+          [length]="100"
+          [pageSizeOptions]="[5, 10, 50]"
+          showFirstLastButtons 
+          aria-label="Select page of periodic elements">
+      </mat-paginator>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        [disabled]="!currentGroup.ativo"
+        [expanded]="currentGroup.ativo"
+        >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Usuários
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="btn-confirm" *ngIf="peddingUsers()">
+        <ion-button
+           size="small"
+          (click)="confirmUserGroup()"
+           color="warning">
+           <ion-icon slot="start" name="save-outline" size="small"></ion-icon>
+           salvar alterações
+        </ion-button>
+      </div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item> 
+          
+              <!-- searchbar -->
+              <ion-label position="floating"></ion-label>
+
+              <ion-searchbar
+                id="searchbar"
+                (ionChange)="search($event)"
+                placeholder="Buscar usuário"
+                color="primary">
+              </ion-searchbar>
+
+              <ion-list *ngFor="let user of temporaryDataSearch" (click)="addUserOnGroup(user)" class="search-data-result">
+                {{user.nome}} - {{user.documento | cpfCnpj}}
+              </ion-list>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      <!-- Tabela de dados -->
+      <ion-row class="ion-padding">
+        <table mat-table [dataSource]="userDataSource" class="mat-elevation-z8" matSort>
+          <!-- Coluna nome -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigoUsuario}} </td>
+          </ng-container>
+          <!-- Coluna nome -->
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+          </ng-container>
+          <!-- Coluna documento -->
+          <ng-container matColumnDef="documento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF/CNPJ </th>
+            <td mat-cell *matCellDef="let element"> {{element.documento | cpfCnpj}} </td>
+          </ng-container>
+          <!-- Coluna situação -->
+          <ng-container matColumnDef="situacao">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Situação </th>
+            <td mat-cell *matCellDef="let element"> {{element.ativo | ativoInativo}} </td>
+          </ng-container>
+          <!-- Coluna remover -->
+          <ng-container matColumnDef="remover">
+            <th mat-header-cell *matHeaderCellDef> Remover </th>
+            <td mat-cell *matCellDef="let element">
+              
+              <ion-button
+                size="small"
+                 color="danger"
+                (click)="presentAlertDeleteUser(element)" >
+                <ion-icon slot="start" name="trash-outline" size="small"></ion-icon>
+                Excluir
+              </ion-button>
+              
+              <!-- <ion-icon name="close-circle-outline" size="large" color="danger" class="edit-icon" (click)="presentAlertDeleteUser(element)"></ion-icon> -->
+            </td>
+          </ng-container>
+           <!-- Coluna pendente -->
+           <ng-container matColumnDef="pendente">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <ion-badge
+                color="warning"
+                mode="ios"
+                *ngIf="element.localUser"
+                title="as alterações ainda não foram registradas"
+              > pendente </ion-badge>
+
+              <!-- <ion-text *ngIf="element.localUser" class="pending" title="as alterações ainda não foram registradas">
+                pendente
+              </ion-text> -->
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsOfUsers"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsOfUsers;"></tr>
+        </table>
+      </ion-row>
+
+      <!-- Páginação da tabela -->
+      <mat-paginator
+        #paginator
+        [length]="100"
+        [pageSizeOptions]="[10, 20, 50]"
+        showFirstLastButtons 
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ion-grid>
+</ion-content>

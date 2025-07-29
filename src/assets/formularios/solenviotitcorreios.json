@@ -1,0 +1,231 @@
+{
+  "title": "Solicitação de Envio de Títulos/Certidão pelo Correio",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "saudacao",
+          "type": "title",
+          "value": "Ilmo. Senhor 10º Oficial de Registro de Imóveis da Capital do Estado de São Paulo.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Requerente",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome completo",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "estadocivil",
+          "label": "Estado civil",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "nacionalidade",
+          "label": "Nacionalidade",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "profissao",
+          "label": "Profissão",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "filiacao",
+          "label": "Filiação",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "declparagrafo1",
+          "value": "Venho respeitosamente solicitar a V. Senhoria que o envio do Título/Certidão, Protocolo",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "protocolo",
+          "label": "número: ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "texto1",
+          "label": "",
+          "value": "seja enviado via correio, a ser entregue no endereço acima.",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "linha",
+          "label": "",
+          "value": "",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "texto2",
+          "label": "",
+          "value": "*Salientamos que a documentação enviada pelo sistema Sedex é de inteira responsabilidade dos Correios. O Cartório não responderá no caso de extravio ou perda de documentação em trânsito. ",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "texto3",
+          "label": "",
+          "value": "Obs. A solicitação acima deverá ser preenchida e assinada pelo interessado e encaminhada em formato PDF no Email: RETIRADA@10RISP.COM.BR.",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Footer",
+      "description": "",
+      "show": "print",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "extras": {
+            "sizePrint": 12
+          }
+        }
+      ]
+    }
+  ]
+}

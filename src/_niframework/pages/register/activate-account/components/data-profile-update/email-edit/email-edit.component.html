@@ -1,0 +1,56 @@
+<!-- Edita o e-mail do usuário no banco de dados. -->
+
+<ion-grid [fixed]="true">
+
+  <ion-row *ngIf=emailvinc style="padding-top: 30px">
+    <ion-col size="12">
+      <div class="ion-text-center">
+        <ion-text color="primary">E-mail atual: </ion-text>
+        <ion-text color="primary" style="font-size: larger;">{{emailvinc}}</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <div class="animated fadeInDown ion-text-center ion-padding">
+    <ion-text color="primary">Se deseja alterar o e-mail atual, informe abaixo um novo e-mail e clique em atualizar.</ion-text>
+  </div>
+
+
+
+  <form [formGroup]="formulario">
+    <ion-item color="light" class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline" item-start></ion-icon>
+        Email
+      </ion-label>
+      <ion-input id="emailValue" type="email" [(ngModel)]="dados.email" formControlName="email">
+      </ion-input>
+    </ion-item>
+    <ion-item color="light" class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline" item-start></ion-icon>
+        Confirmar e-mail
+      </ion-label>
+      <ion-input type="email" [(ngModel)]="dados.confirmEmail" formControlName="emailToCompare" (keydown)="enterBtn($event)">
+      </ion-input>
+    </ion-item>
+  </form>
+
+
+
+  <div style="padding-top: 40px;">
+    <ion-row>
+      <ion-col size=2></ion-col>
+      <ion-col size=8>
+        <ion-button expand="block" color="primary" tappable (click)="updateEmail()" [disabled]="!formulario.valid">
+          Atualizar
+        </ion-button>
+
+        <ion-button expand="block" color="primary" fill="outline" routerLink="/login">
+          voltar ao login novamente
+        </ion-button>
+      </ion-col>
+      <ion-col size=2></ion-col>
+    </ion-row>
+  </div>
+</ion-grid>

@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="" defaultHref="/app/profile/details"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid [fixed]="true">
+
+    <div class="animated fadeInDown ion-text-center ion-padding">
+      <ion-text color="primary">Edite os dados da sua conta</ion-text>
+    </div>
+
+      <!-- User Profile form X-->
+      <form [formGroup]="onEditProfileForm" class="list-form" >
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">
+            Nome
+          </ion-label>
+          <ion-input color="medium" type="text" formControlName="nome"></ion-input>
+        </ion-item>
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">
+            CPF
+          </ion-label>
+          <ion-input color="medium" type="tel" formControlName="doc" readonly
+          [brmasker]="{mask:'000.000.000-00', len:14, userCaracters: true}"></ion-input>
+        </ion-item>
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">
+            Email
+          </ion-label>
+          <ion-input color="medium" type="email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="stacked" for="fone">Telefone</ion-label>
+          <ion-row>
+            <ion-button color="primary" (click)="presentPopover($event)"><ion-icon src="../../../../assets/icons/flags/{{selectedCountry?.flag}}"></ion-icon> +{{selectedCountry?.value}}</ion-button>
+            <ion-input color="medium" type="text" name="telefone" formControlName="fone" 
+                        [brmasker]="{phone: true}" maxlength="15" (keypress)="utils.numberOnly($event)">
+            </ion-input>
+          </ion-row>
+        </ion-item>
+
+      </form>
+
+      <div style="padding-top: 40px;">
+        <ion-row>
+          <ion-col size=2></ion-col>
+          <ion-col size=8>
+            <ion-button style="font-size: 14px;" (click)="updateProfile()" expand="block" color="primary" [disabled]="!onEditProfileForm.valid" tappable>Salvar</ion-button>
+          </ion-col>
+          <ion-col size=2></ion-col>
+        </ion-row>
+      </div>
+
+
+  </ion-grid>
+</ion-content>

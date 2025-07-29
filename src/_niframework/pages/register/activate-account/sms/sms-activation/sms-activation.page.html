@@ -1,0 +1,71 @@
+<!-- Tela de ativação de conta via código SMS -->
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <div class="back-icon">
+      <ion-router-link href="#/register/options">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+      <h3 no-margin>
+        <ion-text color="light">
+          <ion-text color="primary">Verificação via {{isWhatsapp ? 'Whatsapp' : 'SMS'}}</ion-text>
+        </ion-text>
+      </h3>
+      <div class="animated fadeInDown ion-text-center ion-padding">
+        <!-- <ion-icon *ngIf="" name="warning" class="warning-icon"></ion-icon> -->
+        <ion-text color="primary" class="in">{{mensagem}}</ion-text><br>
+      </div>
+      <div class="">
+        <ion-text color="primary" class="phoneNumber" >{{hidePhoneNumbersMask}}</ion-text>
+        <!-- <ion-text color="primary" class="phoneNumber" >{{phone | mask: '(00) 00000-0000'}}</ion-text> -->
+        <!-- <ion-text><a (click)="editPhone()" class="editar">este não é meu número</a></ion-text> -->
+      </div>
+    </div>
+
+    <form [formGroup]="formulario">
+      <div id="sms-input">
+        <input [(ngModel)]="code1" maxlength="1" formControlName="inputSms1" moveNextByMaxLength [disabled]="codesInputsEnable"/>
+        <input [(ngModel)]="code2" maxlength="1" formControlName="inputSms2" moveNextByMaxLength [disabled]="codesInputsEnable"/>
+        <input [(ngModel)]="code3" maxlength="1" formControlName="inputSms3" moveNextByMaxLength [disabled]="codesInputsEnable"/>
+        <input [(ngModel)]="code4" maxlength="1" formControlName="inputSms4" moveNextByMaxLength [disabled]="codesInputsEnable" (keydown)="enterBtn($event)"/>
+      </div>
+    </form>
+
+    <ion-text *ngIf="isWhatsapp == false">
+        <h1 *ngIf="timerResult != 'false'" class="timer">{{timerResult}}</h1>
+        <p *ngIf="timerResult === '0'" class="timer-message" title="Tente enviar um novo código">O código pode ter expirado</p>
+    </ion-text>
+
+    <div style="padding-top: 40px;">
+      <ion-row>
+        <ion-col size=2></ion-col>
+        <ion-col size=8>
+          <ion-button title="Informe os 4 números de ativação" expand="block" color="primary" tappable (click)="verify()" [disabled]="!formulario.valid">
+            Verificar
+          </ion-button>
+        </ion-col>
+        <ion-col size=2></ion-col>
+      </ion-row>
+    </div>
+
+    <div>
+      <ion-row>
+        <ion-col size=2></ion-col>
+        <ion-col size=8 class="ion-text-center">
+          <ion-button expand="block" [disabled]="isWhatsapp == true && timerResult != 'false' ? true : false" fill="outline" color="primary" class="ion-margin-bottom" (click)="OTPcodeRequest()" (click)="setNext($event.target, 'Next')" >Enviar agora</ion-button>
+          <ion-text color="primary" *ngIf="isWhatsapp == true && timerResult != 'false'">
+            Aguarde {{timerResult}} minuto(s) para enviar novamente.
+          </ion-text>
+        </ion-col>
+        <ion-col size=2></ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

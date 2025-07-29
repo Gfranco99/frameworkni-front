@@ -1,0 +1,22 @@
+.link-button {
+    display: block;
+    background-color: white;
+    border: none;
+    color: #1B5B47;
+    text-decoration: underline;
+    margin: auto;
+    padding: 10px;
+    font-size: 1em;
+  }
+  
+  .link {
+    :hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+  }
+  
+  .opcoes-items {
+    justify-content: center;
+  }
+  

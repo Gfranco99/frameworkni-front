@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <!--<ion-button (click)="voltar()"><ion-icon name="arrow-back-outline" class="volta"></ion-icon></ion-button>-->
+      <ion-back-button [text]="" defaultHref="/app"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{protocolDescription}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [fixed]="true">
+
+    <div class="animated fadeInDown ion-text-center ion-padding">
+      <ion-text color="primary">Informe os dados abaixo para realizar a consulta.</ion-text>
+    </div>
+
+      <input [type]="passwordType" style="display:none;">
+      <!-- Consulta protocolo form X-->
+      <form [formGroup]="onProtConsultaProtocolForm" class="list-form">
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="brush-outline" item-start></ion-icon>
+            Número do Protocolo
+          </ion-label>
+          <ion-input color="secondary" type="number" formControlName="numero" autocomplete="chrome-off" inputmode="numeric"></ion-input>
+        </ion-item>
+
+        <ion-item class="animated fadeInUp">
+          <ion-label position="floating">
+            <ion-icon name="key-outline" item-start></ion-icon>
+            Senha
+          </ion-label>
+          <ion-input color="secondary" [type]="passwordType" formControlName="senha"  (keyup.enter)='goProtocolDetails()' [readonly]="!this.onProtConsultaProtocolForm.controls['numero'].valid"
+          autocomplete="new-password"></ion-input>
+          <ion-icon style="padding-top: 30px;" name="eye" item-right slot="end" (click)="togglePasswordMode()"></ion-icon>
+        </ion-item>
+
+      </form>
+
+      <div style="padding-top: 30px" class="ion-text-center">
+        <ion-row>
+          <ion-col size="2"></ion-col>
+          <ion-col size="8">
+            <ion-button expand="block" color="secondary"(click)="goProtocolDetails()" [disabled]="!onProtConsultaProtocolForm.valid" tappable>
+              Consultar
+            </ion-button>
+          </ion-col>
+          <ion-col size="2"></ion-col>
+        </ion-row>
+      </div>
+
+  </ion-grid>
+</ion-content>

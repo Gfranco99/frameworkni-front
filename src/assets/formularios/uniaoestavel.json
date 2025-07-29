@@ -1,0 +1,333 @@
+{
+  "title": "Registro de Escritura Declaratória de União Estável",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "saudacao",
+          "type": "title",
+          "value": "Ilmo. Senhor 10º Oficial de Registro de Imóveis da Capital do Estado de São Paulo.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Requerente",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome completo",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "estadocivil",
+          "label": "Estado civil",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "nacionalidade",
+          "label": "Nacionalidade",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "profissao",
+          "label": "Profissão",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "filiacao",
+          "label": "Filiação",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "declparagrafo1",
+          "value": "vem respeitosamente requerer a V. Senhoria se digne proceder ao registro da escritura declaratória de união estavel em anexo, declarando que o",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "declcheck1",
+          "label": "primeiro domicílio ou",
+          "value": false,
+          "type": "checkbox",
+          "extras": {
+            "sizePrint": 3,
+            "sizeMd": 3,
+            "sizeLg": 3,
+            "sizeXl": 3
+          }
+        },
+        {
+          "name": "declcheck2",
+          "label": "atual domicílio conjugal após o casamento foi no endereço abaixo informado.",
+          "value": false,
+          "type": "checkbox",
+          "extras": {
+            "sizePrint": 9,
+            "sizeMd": 9,
+            "sizeLg": 9,
+            "sizeXl": 9
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "Rua/Av",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+        {
+          "title": "",
+          "controls": [
+            {
+              "name": "d1",
+              "value": "Declara e requer, ainda, que sendo proprietário (a) de imóveis registrados nessa Circunscrição Imobiliária, seja feita:",
+              "type": "paragraph",
+              "extras": {
+                "sizePrint": 12,
+                "sizeMd": 12,
+                "sizeLg": 12,
+                "sizeXl": 12
+              }
+            },
+            {
+              "name": "declcheck3",
+              "label": "Tão somente o registro da escritura declaratória de união estável.",
+              "value": false,
+              "type": "checkbox",
+              "extras": {
+                "sizePrint": 12,
+                "sizeMd": 12,
+                "sizeLg": 12,
+                "sizeXl": 12
+              }
+            }
+          ]
+        },
+        {
+        "title": "",
+        "controls": [
+          {
+            "name": "declcheck4",
+            "label": "As averbações necessárias em todas as matrículas dos imóveis registrados em meu nome.  ",
+            "value": false,
+            "type": "checkbox",
+            "extras": {
+              "sizePrint": 12,
+              "sizeMd": 12,
+              "sizeLg": 12,
+              "sizeXl": 12
+            }
+          },
+          {
+            "name": "declcheck5",
+            "label": "com certidão da(s) matrícula (s)",
+            "value": false,
+            "type": "checkbox",
+            "extras": {
+              "sizePrint": 6,
+              "sizeMd": 6,
+              "sizeLg": 6,
+              "sizeXl": 6
+            }
+          },
+          {
+            "name": "declcheck6",
+            "label": "sem certidão da(s) matrícula (s)",
+            "value": false,
+            "type": "checkbox",
+            "extras": {
+              "sizePrint": 6,
+              "sizeMd": 6,
+              "sizeLg": 6,
+              "sizeXl": 6
+            }
+          }
+        ]
+      },
+      {
+        "title": "",
+        "controls": [
+        {
+          "name": "matriculaTranscricao1",
+          "label": "A averbação necessária da união estavel apenas na (s) matrícula (s):",
+          "value": false,
+          "type": "checkbox",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "matriculainput",
+          "label": "",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "declcheck7",
+          "label": "com certidão da(s) matrícula (s)",
+          "value": false,
+          "type": "checkbox",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "declcheck8",
+          "label": "sem certidão da(s) matrícula (s)",
+          "value": false,
+          "type": "checkbox",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "show": "print",
+          "extras": {
+            "sizePrint": 12
+          }
+        },
+        {
+          "name": "rodape",
+          "type": "paragraph",
+          "value": "OBS: Reconhecer a firma do(a) requerente ou assinar o requerimento perante o funcionário do cartório. Anexar a escritura original declaratória de união estável.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    }
+  ]
+}

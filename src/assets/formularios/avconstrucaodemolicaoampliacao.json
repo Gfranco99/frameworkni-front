@@ -1,0 +1,507 @@
+{
+  "title": "Averbação de construção, demolição ou ampliação",
+  "description": "",
+  "logo": "/assets/img/logo.png",
+  "groups": [
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "saudacao",
+          "type": "title",
+          "value": "Ilmo. Senhor 10º Oficial de Registro de Imóveis da Capital do Estado de São Paulo.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "Requerente",
+      "controls": [
+        {
+          "name": "nomeCompleto",
+          "label": "Nome completo",
+          "value": "",
+          "type": "text",
+          "validators": {
+            "required": true,
+            "minLength": 10
+          },
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "estadocivil",
+          "label": "Estado civil",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "nacionalidade",
+          "label": "Nacionalidade",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "profissao",
+          "label": "Profissão",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "filiacao",
+          "label": "Filiação",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+
+        {
+          "name": "cpfcnpj",
+          "label": "CPF / CNPJ",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "rg",
+          "label": "RG",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "endereco",
+          "label": "Endereço",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "email",
+          "label": "Email",
+          "type": "text",
+          "extras": {
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "introMatricula",
+          "value": "vem respeitosamente requerer a V. Senhoria, seja(m) efetuado(s) o(s) ato(s) abaixo assinalado(s), com relação ao(s) imóvel(eis) objeto da(s) seguinte(s) matrícula(s):",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "matriculas",
+          "label": "Matrículas",
+          "value": "",
+          "type": "textarea",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12,
+            "showLabel": false
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "avreformacheck",
+          "type": "checkbox",
+          "label": "Averbação de reforma/regularização da construção do prédio",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "numero1",
+          "label": "número",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "da Rua/Av.",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 8,
+            "sizeLg": 8,
+            "sizeXl": 8
+          }
+        },
+        {
+          "name": "introMatricula",
+          "value": "passando a ter a área construída",
+          "type": "paragraph",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "area1",
+          "label": "total de (m²)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "valor1",
+          "label": "valor (R$)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "avconstrucaocheck",
+          "type": "checkbox",
+          "label": "Averbação de construção do(s) prédio(s)",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "numero1",
+          "label": "número(s)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "da Rua/Av.",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 8,
+            "sizeLg": 8,
+            "sizeXl": 8
+          }
+        },
+        {
+          "name": "area1",
+          "label": "com área de (m²)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "valor1",
+          "label": "valor (R$)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "avampliacaocheck",
+          "type": "checkbox",
+          "label": "Averbação de ampliação do(s) prédio(s)",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "numero1",
+          "label": "número(s)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "da Rua/Av.",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 8,
+            "sizeLg": 8,
+            "sizeXl": 8
+          }
+        },
+        {
+          "name": "area1",
+          "label": "com área de (m²)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        },
+        {
+          "name": "valor1",
+          "label": "valor (R$)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "avdemolicaocheck",
+          "type": "checkbox",
+          "label": "Averbação de demolição do(s) prédio(s)",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "numero1",
+          "label": "número(s)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "da Rua/Av.",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 8,
+            "sizeLg": 8,
+            "sizeXl": 8
+          }
+        },
+        {
+          "name": "area1",
+          "label": "com área de (m²)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "controls": [
+        {
+          "name": "avinclusaoareacheck",
+          "type": "checkbox",
+          "label": "Averbação de inclusão de área do prédio",
+          "value": false,
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        },
+        {
+          "name": "numero1",
+          "label": "número",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 4,
+            "sizeMd": 4,
+            "sizeLg": 4,
+            "sizeXl": 4
+          }
+        },
+        {
+          "name": "logradouro1",
+          "label": "da Rua/Av.",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 8,
+            "sizeLg": 8,
+            "sizeXl": 8
+          }
+        },
+        {
+          "name": "area1",
+          "label": "com área de (m²)",
+          "value": "",
+          "type": "text",
+          "extras": {
+            "sizePrint": 6,
+            "sizeMd": 6,
+            "sizeLg": 6,
+            "sizeXl": 6
+          }
+        }
+      ]
+    },
+    {
+      "title": "",
+      "description": "",
+      "position": "footer",
+      "controls": [
+        {
+          "name": "assinatura",
+          "type": "img",
+          "value": "/assets/img/assinatura.png",
+          "show": "print",
+          "extras": {
+            "sizePrint": 12
+          }
+        },
+        {
+          "name": "rodape",
+          "type": "paragraph",
+          "value": "Reconhecer a(s) firma(s) do(a,os,as) requerente(s) ou assinar(em) o requerimento perante o funcionário do cartório. Se pessoa jurídica apresentar prova de representação em nome do signatário. Anexar cópia(s) autenticada(s) do(s) documento(s) que comprove(m) o requerido.",
+          "extras": {
+            "sizePrint": 12,
+            "sizeMd": 12,
+            "sizeLg": 12,
+            "sizeXl": 12
+          }
+        }
+      ]
+    }
+  ]
+}

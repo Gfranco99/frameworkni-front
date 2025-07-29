@@ -1,0 +1,51 @@
+<ion-content class="ion-padding">
+    <ion-grid [fixed]="true">
+        <ion-header style="border-radius: 4px;">
+            <ion-toolbar class="header">
+                <ion-buttons slot="start">
+                    <ion-back-button icon="chevron-back-outline" defaultHref="/"></ion-back-button>
+                </ion-buttons>
+                <ion-title class="ion-text-capitalize">Meu Perfil</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <div class="welcome">
+            <div class="circle">
+                <ion-text>{{firstLetter}}</ion-text>
+            </div>
+            <ion-text class="welcome-message">Olá, {{firstName}}!</ion-text>
+        </div>
+
+        <div class="user-data-container">
+            <ion-item lines="none">
+                <ion-icon name="person-outline" slot="start"></ion-icon>
+                <ion-label>Nome:</ion-label>
+                <ion-text slot="end">{{userData.nome}}</ion-text>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-icon name="id-card-outline" slot="start"></ion-icon>
+                <ion-label>{{ userData.documento.length === 11 ? 'CPF:' : 'CNPJ:'}}</ion-label>
+                <ion-text slot="end">{{userData.documento | cpfCnpj}}</ion-text>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-icon name="mail-outline" slot="start"></ion-icon>
+                <ion-label>E-mail: </ion-label>
+                <ion-text slot="end">{{userData.email}}</ion-text>
+            </ion-item>
+        </div>
+
+        <div class="edit-userdata-button-container">
+            <ion-row>
+                <ion-col size="8"></ion-col>
+                <ion-col size="4">
+                    <ion-button class="edit-userdata-button" size="small" expand="block">
+                        Editar
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </div>
+
+    </ion-grid>
+</ion-content>

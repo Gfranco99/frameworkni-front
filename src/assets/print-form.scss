@@ -1,0 +1,104 @@
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+body {
+  max-width: 529pt;
+}
+
+* {
+  font-family: Georgia, serif;
+  font-size: 10pt;
+}
+
+#logo-requerimento {
+  max-width: 150px;
+  display: block;
+}
+
+h1 {
+  font-size: 14pt;
+  display: block;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  margin-top: 10px;
+}
+
+/*ion-text.json-form-text{
+  font-size: 9pt;
+}*/
+
+.print-hidden {
+  display: none;
+}
+
+.print-col {
+  display: block;
+  position: relative;
+  float: left;
+}
+
+#Header, #Footer {
+  display: none !important;
+}
+
+.print-col-3, .print-col-4, .print-col-6, .print-col-8, .print-col-12 {
+  display: inline-block;
+  max-width: inherit !important;
+}
+
+.print-col-3 {
+  width: 25% !important;
+}
+
+.print-col-4 {
+  width: 33% !important;
+}
+
+.print-col-6 {
+  width: 50% !important;
+}
+
+.print-col-8 {
+  width: 66% !important;
+}
+
+.print-col-12 {
+  width: 100% !important;
+}
+
+.print-group {
+  margin: 15px 0 0 0;
+  display: block;
+  position: relative;
+  float: left;
+  /*background: #F8F8F8*/
+}
+
+.print-header {
+  position: fixed !important;
+  top: 0;
+}
+
+.print-footer {
+  position: fixed !important;
+  bottom: 0;
+}
+
+.print-text {
+  margin: 5px 0;
+}
+
+.json-form-img {
+  display: block;
+  margin: 0 auto;
+}

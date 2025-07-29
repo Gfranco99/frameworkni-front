@@ -1,0 +1,27 @@
+<!-- Página que chama os components voltados a edição de dados cadastrais do usuário. -->
+
+<ion-content color="light" padding class="animated fadeIn login auth-page">
+  <ion-grid [fixed]="true">
+
+    <div class="back-icon">
+      <ion-router-link href="#/login">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+      <h3 no-margin>
+        <ion-text color="light">
+          <ion-text color="primary">Atualizar registro</ion-text>
+        </ion-text>
+      </h3>
+    </div>
+  </ion-grid>
+
+  <app-email-edit *ngIf="option == 'email' || 'emaillogin'"></app-email-edit>
+  <app-phone-edit *ngIf="option == 'phone'"></app-phone-edit>
+</ion-content>

@@ -1,0 +1,110 @@
+<!-- Barra de pesquisa -->
+<ion-toolbar *ngIf="searchParam">
+  <ion-searchbar debounce="500" (ionInput)="filterList($event)" placeholder="Pesquisar" color="light" autocomplte="false" type="number" inputmode="numeric">
+  </ion-searchbar>
+</ion-toolbar>
+
+<!--Lista de Protocolos component recebe os dados da chamada do back-end-->
+
+
+<!--<ion-list *ngIf="hasProtocol" >
+  <div *ngFor="let p of arrayProtocolos; let index = index; let s of search " color="light" >
+    <ion-item *ngIf="index <= (size - 1)" href="#/app/protocolo/{{p.dsNumero}}/{{p.dsSenha}}/{{p.idTipoProtocolo}}/true">
+      <ion-label><span style="font-size: smaller;">Protocolo: <b>{{p.dsNumero}}</b></span>
+        <div *ngIf="p.idTipoProtocolo==3" ><ion-text color="secondary"><span style="font-size: smaller;">Prenotação</span></ion-text></div>
+        <div *ngIf="p.idTipoProtocolo==1" ><ion-text color="secondary"><span style="font-size: smaller;">Certidão</span></ion-text></div>
+        <div *ngIf="p.idTipoProtocolo==2" ><ion-text color="secondary"><span style="font-size: smaller;">Exame e Cálculo</span></ion-text></div>
+        <div><p class="itemprotocolo"><span style="font-size: smaller;">{{p.dsNomeApresentante}}</span></p></div>
+        <div><p class="itemprotocolo">{{p.dsStatusAndamento}}</p></div>
+      </ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+</ion-list>-->
+
+<ion-list *ngIf="hasProtocol" >
+  <div *ngFor="let p of arrayProtocolos; let index = index; let s of search " color="light" >
+    <ion-item *ngIf="index <= (size - 1) && p.idTipoTitulo" href="#/app/protocolo/{{p.dsNumeroProtocolo}}/{{p.dsSenha}}/{{p.idTipoTitulo}}/true">
+      <ion-label>
+        <div *ngIf="p.idTipoTitulo==3" >
+          <div><span style="font-size: smaller;">Protocolo: <b>{{p.dsNumeroProtocolo}}</b></span></div>
+          <ion-text color="secondary"><span style="font-size: smaller;">Prenotação</span></ion-text>
+          <div><p class="itemprotocolo"><span style="font-size: smaller;">{{p.dsNomeApresentante}}</span></p></div>
+          <div><p class="itemprotocolo">{{p.dsStatus}}</p></div>
+        </div>
+
+        <div *ngIf="p.idTipoTitulo==1" >
+          <div><span style="font-size: smaller;">Protocolo: <b>{{p.dsNumeroProtocolo}}</b></span></div>
+          <ion-text color="secondary"><span style="font-size: smaller;">Certidão</span></ion-text>
+          <div><p class="itemprotocolo"><span style="font-size: smaller;">{{p.dsNomeApresentante}}</span></p></div>
+          <div><p class="itemprotocolo">{{p.dsStatusAndamento}}</p></div>
+        </div>
+
+        <div *ngIf="p.idTipoTitulo==2" >
+          <div><span style="font-size: smaller;">Protocolo: <b>{{p.dsNumeroProtocolo}}</b></span></div>
+          <ion-text color="secondary"><span style="font-size: smaller;">Exame e Cálculo</span></ion-text>
+          <div><p class="itemprotocolo"><span style="font-size: smaller;">{{p.dsNomeApresentante}}</span></p></div>
+          <div><p class="itemprotocolo">{{p.dsStatusAndamento}}</p></div>
+        </div>
+      </ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item *ngIf="index <= (size - 1) && p.idTipoAgendamento" href="#/app/agendamento/consulta/{{p.dsNumeroProtocolo}}">
+      <ion-label>
+        <div *ngIf="p.idTipoAgendamento==1" >
+          <div><span style="font-size: smaller;">Agendamento: <b>{{p.dsNumeroProtocolo}}</b></span></div>
+          <ion-text color="secondary"><span style="font-size: smaller;">Domicilio</span></ion-text>
+          <div><p class="itemprotocolo"><span>
+            <div *ngIf="p.inCorreio">Entrega por: Correio</div>
+            <div *ngIf="p.inDomicilio">Entrega por: Motoboy</div>
+            <div><p class="itemprotocolo"><span style="font-size: smaller;">Número de Protocolo: {{p.dsProtocoloCliente}}</span></p></div>
+          </span></p></div>
+        </div>
+
+        <div *ngIf="p.idTipoAgendamento==2" >
+          <div><span style="font-size: smaller;">Agendamento: <b>{{p.dsNumeroProtocolo}}</b></span></div>
+          <ion-text color="secondary"><span style="font-size: smaller;">Presencial</span></ion-text>
+          <div><p class="itemprotocolo">{{p.dtAgenda | date :'dd/MM/yyyy HH:mm'}}</p></div>
+          <div><p class="itemprotocolo"><span style="font-size: smaller;">Número de Protocolo: {{p.dsProtocoloCliente}}</span></p></div>
+        </div>
+
+      </ion-label>
+      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+    </ion-item>
+
+    <ion-item  *ngIf="index <= (size - 1) && p.listaItens" #classe href="#/app/protocolo/{{p.dsProtocoloCartorio}}/{{p.dsSenhaProtocoloCartorio}}/1/false" (click)="pedidoPago($event, p.dsProtocoloCartorio, p.dsSenhaProtocoloCartorio, p.dsProtocoloInterno)">
+      <ion-label>
+        <div><p  style="font-size: 14px;" *ngIf="p.dsProtocoloCartorio===''" >Protocolo: <b>0</b></p></div>
+        <div><p  style="font-size: 14px;" *ngIf="p.dsProtocoloCartorio!==''" >Protocolo: <b>{{p.dsProtocoloCartorio}}</b></p></div>
+        <div><p class="itemprotocolo" *ngIf="p.dsProtocoloCartorio!==''" >{{p.dsStatus}}</p></div>
+        <div><span style="font-size: smaller;">Nro. Pedido de Certidão: <b>{{p.dsProtocoloInterno}}</b></span></div>
+        <ion-text color="secondary">
+          <span style="font-size: smaller;" class="itemprotocolo">
+            Status Pagamento:
+            <span *ngIf="p.dsProtocoloCartorio !== ''" class="pago" > Pago</span>
+            <span *ngIf="p.dsProtocoloCartorio === ''" class="pendente" > Pendente</span>
+          </span>
+        </ion-text>
+      </ion-label>
+        <ion-button #btn (click)="listarCertidoes(p.listaItens, p.dsProtocoloInterno, $event)" title="Detalhes do Pedido">
+          <ion-icon name="list-outline"></ion-icon>
+        </ion-button>
+        <ion-icon *ngIf="p.dsProtocoloCartorio !== ''"  name="chevron-forward-outline" slot="end"></ion-icon>
+        <ion-icon *ngIf="p.dsProtocoloCartorio === ''"  name="cash-outline" slot="end"></ion-icon>
+    </ion-item>
+  </div>
+</ion-list>
+
+
+<!--Quando usuario não tiver nunhum protocolo irá aparecer está mensagem-->
+
+<ion-list *ngIf="!hasProtocol">
+  <div class="ion-text-justify">
+    <ion-item lines="none" class="ion-text-left">
+      <ion-text>Nenhum protocolo registrado nesta conta.</ion-text>
+    </ion-item>
+  </div>
+</ion-list>
+
+

@@ -1,0 +1,60 @@
+<!-- Solicita ao usuário o CPF antes de qualquer visualização ou edição de dados sem login. -->
+
+<ion-content>
+  <ion-grid [fixed]="true">
+    <div class="back-icon">
+      <ion-router-link href="#/login" class="arrow-back">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+      <!-- href="#/register/options" -->
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+
+      <img *ngIf="lockIcon" src="../../../../../../assets/icons/lock-open-outline.svg" class="activate-account-icons"
+        alt="">
+
+      <img *ngIf="!lockIcon" src="../../../../../../assets/icons/lock-closed-outline.svg" class="activate-account-icons"
+        alt="">
+
+      <h3 no-margin>
+        <ion-text color="light">
+          <ion-text color="primary">Segurança</ion-text>
+        </ion-text>
+      </h3>
+
+      <div class="animated fadeInDown ion-text-center ion-padding">
+        <ion-text color="primary">Informe o CPF cadastrado no sistema.</ion-text>
+      </div>
+    </div>
+    <ion-item style="padding-top: 60px">
+
+      <form [formGroup]="formulario">
+        <ion-label position="floating">
+          <ion-icon name="key-outline" item-start></ion-icon>
+          CPF:
+        </ion-label>
+        <ion-input id="cpf" type="text" formControlName="cpf" [(ngModel)]="dados.cpfNumber"
+          [brmasker]="{mask:'000.000.000-00', len:14, userCaracters: true}" maxlength="14"
+          (keypress)="utils.numberOnly($event)" (keydown)="enterBtn($event)">
+        </ion-input>
+      </form>
+
+    </ion-item>
+    <div style="padding-top: 40px;">
+      <ion-row>
+        <ion-col size=2></ion-col>
+        <ion-col size=8>
+          <ion-button expand="block" color="primary" (click)="validaCpf()" [disabled]="!formulario.valid">
+            Confirmar
+          </ion-button>
+        </ion-col>
+        <ion-col size=2></ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+</ion-content>

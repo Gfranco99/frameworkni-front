@@ -1,0 +1,46 @@
+<ion-content color="light" padding class="animated fadeIn login auth-page">
+  <ion-grid [fixed]="true">
+
+
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+      </div>
+
+      <!-- Foto da empresa -->
+      <div class="img-start-page">
+        <img src="../../../assets/img/startpage.png" />
+      </div>
+
+      <!-- Nome da empresa  -->
+      <ion-text color="primary">
+        <h1>Nome da Empresa</h1>
+      </ion-text>
+
+      <div style="margin-top: 50px;">
+        <ion-text color="primary">
+          <h5>Slogan da empresa</h5>
+        </ion-text>
+      </div>
+
+    </div>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: var(--ion-color-light);">
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col size="5">
+        <!-- Redireciona para a pagina de Login -->
+        <ion-button expand="block" color="primary" routerLink="/login">Login</ion-button>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+      <ion-col size="5">
+        <!-- redireciona para menu principal da aplicação  -->
+        <!-- Verifique as Regras de negócio da aplicação -->
+        <ion-button expand="block" color="primary" fill="outline" routerLink="/app">Continuar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

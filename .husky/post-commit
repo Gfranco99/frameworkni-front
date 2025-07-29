@@ -1,0 +1,17 @@
+COMMIT_MSG=$(git log -1 --pretty=%B)
+
+if echo "$COMMIT_MSG" | grep -Eq "^(version):"; then  
+  
+  # atualiza versão do sistema automaticamente ao usar a tag 'version'
+  npm run release
+  git push origin --tags
+
+fi
+
+if echo "$COMMIT_MSG" | grep -Eq "^(major):"; then  
+  
+  # atualiza versão do sistema automaticamente ao usar a tag 'version'
+  npm run release -- --release-as major
+  git push origin --tags
+  
+fi

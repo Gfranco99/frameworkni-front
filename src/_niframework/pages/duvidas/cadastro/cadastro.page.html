@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/duvidas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Enviar Dúvida</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid [fixed]='true'>
+
+    <div class="animated fadeInDown ion-text-center ion-padding">
+      <ion-text color="primary">Preencha o formulário abaixo e os detalhes da sua dúvida.</ion-text>
+    </div>
+
+    <form [formGroup]="duvida" class="list-form">
+      <ion-item color="light" class="animated fadeInUp">
+        <ion-label color="primary" position="floating">Nome:</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
+
+      <ion-item color="light" class="animated fadeInUp">
+        <ion-label color="primary" position="floating">E-mail:</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item color="light" class="animated fadeInUp">
+        <ion-label color="primary" position="floating">Telefone:</ion-label>
+        <ion-input type="tel" formControlName="telefone" [brmasker]="{phone: true}" maxlength="15" (keypress)="utils.numberOnly($event)"></ion-input>
+      </ion-item>
+
+      <br>
+      <ion-label>Pergunta:</ion-label>
+        <ion-textarea formControlName="pergunta" rows="5" class="textBorder"></ion-textarea>
+    </form>
+
+
+
+    <ion-row>
+      <ion-col size="5">
+        <ion-button expand="block" color="primary" (click)="sendEmailContato()" [disabled]="!duvida.valid">
+          Enviar
+        </ion-button>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+      <ion-col size="5">
+        <ion-button expand="block" color="primary" (click)="close()">
+          Cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

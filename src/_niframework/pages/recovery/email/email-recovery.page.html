@@ -1,0 +1,70 @@
+<ion-content color="light" padding class="animated fadeIn login auth-page">
+  <ion-grid [fixed]="true">
+
+    <div class="back-icon">
+      <ion-router-link href="#/login">
+        <ion-icon size="large" name="arrow-back"></ion-icon>
+      </ion-router-link>
+    </div>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown ion-text-center">
+      <div class="logo">
+        <img src="../../../assets/img/logo.webp" />
+        <!-- <ion-img [src]="logoBinary"></ion-img> -->
+      </div>
+      <h3 no-margin>
+        <ion-text color="light">
+          <ion-text color="primary">Recuperação de E-mail</ion-text>
+        </ion-text>
+      </h3>
+    </div>
+
+    <!-- Login form X-->
+    <form [formGroup]="onRecoveyForm" class="list-form">
+      <ion-item color="light" class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="key-outline" item-start></ion-icon>
+          CPF
+        </ion-label>
+        <ion-input type="text" name="doc" formControlName="doc"
+          [brmasker]="{form: onRecoveyForm.get('doc'), mask: '000.000.000-00'}" maxlength="14"
+          (keypress)="utils.numberOnly($event)" (change)="validaCPF($event)">
+        </ion-input>
+      </ion-item>
+    </form>
+
+    <div style="padding-top: 30px" class="ion-text-center" *ngIf=!emailvinc>
+      <ion-row>
+        <ion-col color="primary">
+          <ion-text color="primary">
+            Confirme o seu CPF.
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2"></ion-col>
+        <ion-col size="8">
+          <ion-button expand="block" color="primary" (click)="goRecoveryEmail()" [disabled]="!onRecoveyForm.valid"
+            tappable>
+            Avançar
+          </ion-button>
+        </ion-col>
+        <ion-col size="2"></ion-col>
+      </ion-row>
+    </div>
+
+
+    <ion-row *ngIf=emailvinc style="padding-top: 30px">
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <ion-text color="primary">E-mail vinculado:<br></ion-text>
+          <ion-text color="primary" style="font-size: larger;">{{emailvinc}}</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
+</ion-content>

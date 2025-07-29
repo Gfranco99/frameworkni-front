@@ -1,0 +1,8 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" class="tab-animate" id="myTabBar">
+    <ion-tab-button *ngFor="let tab of tabs" (click)="tabClicked(tab)">
+      <ion-icon color="primary" [name]="tab.icon"></ion-icon>
+      <ion-label>{{tab.text}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

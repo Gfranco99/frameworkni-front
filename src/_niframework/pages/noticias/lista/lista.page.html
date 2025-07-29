@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="" defaultHref="/app"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notícias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="atualizar($event)">
+    <ion-refresher-content
+    pullingText="Puxe para Atualizar"
+    refreshingSpinner="lines"
+    refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="animated fadeInDown ion-text-center ion-padding">
+    <ion-text color="primary">Veja abaixo as últimas notícias e eventos relevantes.</ion-text>
+  </div>
+
+  <ion-grid [fixed]="true">
+    <app-noticias></app-noticias>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Atualização de Consentimentos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col class="ion-text-center">
+        <h4>TERMOS DE USO E POLÍTICA DE PRIVACIDADE DA EMRPESA</h4>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-text class="ion-text-center">
+        Obrigado por confiar a nós suas informações. Entendemos que isso é uma grande responsabilidade e trabalhamos
+        duro para proteger essas informações.
+      </ion-text>
+    </ion-row>
+
+    <form [formGroup]="onUpdateConcernsForm" class="list-form">
+      <div style="padding-top: 20px;">
+        <ion-row>
+          <ion-col>
+            <ion-list lines="none">
+              <ion-item>
+                <!-- COLOCAR ENDEREÇO DO PDF COM AS POLÍTICAS DE PRIVACIDADE-->
+                <ion-checkbox labelPlacement="end" formControlName="acceptTermOfUse">
+                  <div class="ion-text-wrap">
+                    Declaro que li e aceito os
+                    <a href="#" target="_blank" (click)="$event.stopPropagation()">
+                      TERMOS DE USO e a POLÍTICA DE PRIVACIDADE
+                    </a>
+                    que operam neste serviço.
+                  </div>
+                </ion-checkbox>
+              </ion-item>
+
+              <ion-item>
+                <ion-checkbox labelPlacement="end" formControlName="acceptAccountCreate">
+                  <div class="ion-text-wrap">
+                    Eu voluntariamente forneço os meus dados pessoais a fim de executar e manter uma conta de usuário
+                    neste aplicativo.
+                  </div>
+                </ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </div>
+    </form>
+
+    <div style="padding-top: 40px;">
+      <ion-row>
+        <ion-col size=2></ion-col>
+        <ion-col size=8>
+          <ion-button expand="block" color="primary" (click)="goAcceptConcerns()"
+            [disabled]="!onUpdateConcernsForm.valid" tappable>
+            Aceitar
+          </ion-button>
+        </ion-col>
+        <ion-col size=2></ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>

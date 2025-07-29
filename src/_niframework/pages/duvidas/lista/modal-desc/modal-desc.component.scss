@@ -1,0 +1,59 @@
+.botoes{
+    --background: #BEA859;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-style: none !important;
+    --border: 0 !important;
+    --box-shadow: none !important;
+    --border: none !important;
+    --border-style: none !important;
+    width: 80%;
+}
+
+.botoes2{
+    --background: #BEA859;
+    color: #ffffff;
+    font-weight: bold;
+    border: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-style: none !important;
+    --border: 0 !important;
+    --box-shadow: none !important;
+    --border: none !important;
+    --border-style: none !important;
+    width: 50%;
+}
+
+.card{
+    --background: transparent;
+    color: #1B5B47;
+    text-align: justify;
+    border: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-style: none !important;
+    --border: 0 !important;
+    --box-shadow: none !important;
+    --border: none !important;
+    --border-style: none !important;
+    cursor: default;
+}
+
+ion-title{
+    text-align: left;
+}
+
+.lista{
+    height: 80%;
+}
+
+.esconde{
+    position: absolute;
+    top: 0px;
+    left: -1600000px;
+    color: transparent;
+}
