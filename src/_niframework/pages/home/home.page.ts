@@ -6,6 +6,7 @@ import { NoticiasComponent } from '../noticias/noticias/noticias.component';
 import { ProtocoloConsultaPage } from '../protocolo/protocolo-consulta/protocolo-consulta.page';
 import { MobileService } from 'src/_niframework/services/mobile/mobile.service';
 import { Location } from '@angular/common';
+import { ValidadocsServiceService } from 'src/_niframework/services/validadocs/validadocs.service.service';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,7 @@ export class HomePage implements OnInit {
     private mobile: MobileService,
     private changeDetector: ChangeDetectorRef,
     private location: Location,
+    private validadocsservice: ValidadocsServiceService
   ) {
     this.resetValidador();
   }
@@ -67,11 +69,16 @@ export class HomePage implements OnInit {
       return;
     }
 
-    if (!file.name.toLowerCase().endsWith('.vdoc')) {
-      this.alerts.showAlert('Erro', 'Selecione um arquivo com extensão .vdoc');
-      this.resetValidador();
-      return;
-    }
+    // if (!file.name.toLowerCase().endsWith('.vdoc')) {
+    //   this.alerts.showAlert('Erro', 'Selecione um arquivo com extensão .vdoc');
+    //   this.resetValidador();
+    //   return;
+    // }
+    
+    const conteudo = this.validadocsservice.postvalidadocs(file);
+
+    console.log(conteudo);
+  
 
     const reader = new FileReader();
     reader.onload = (e: any) => {

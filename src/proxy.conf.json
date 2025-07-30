@@ -1,0 +1,11 @@
+{
+  "/endpoint": {
+    "target": "https://homol2.validadocs.com.br/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/endpoint": ""
+    }
+  }
+}
