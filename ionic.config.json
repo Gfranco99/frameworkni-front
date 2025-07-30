@@ -6,8 +6,8 @@
   "type": "angular",
   "proxies": [
     {
-      "path": "/endpoint",
-      "proxyUrl": "https://homol.validadocs1.com.br/"
+      "path": "/api",
+      "proxyUrl": "https://homol2.validadocs.com.br"
     }
   ]
 }

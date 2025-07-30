@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
 
   // ... (outros atributos)
   public dados: any = null;
+  public retornoValidadocs: any = null;
   public certificados: string[] = [];
   public assinaturas: any[] = [];
   public todosCertificadosValidos: boolean = false;
@@ -51,6 +52,7 @@ export class HomePage implements OnInit {
 
   resetValidador() {
     this.dados = null;
+    this.retornoValidadocs = null;
     this.certificados = [];
     this.assinaturas = [];
     this.todosCertificadosValidos = false;
@@ -75,15 +77,13 @@ export class HomePage implements OnInit {
     //   return;
     // }
     
-    const conteudo = this.validadocsservice.postvalidadocs(file);
+    this.validadocsservice.postPdf(file)
+    .then(result => {
+      
+      this.retornoValidadocs = result;
 
-    console.log(conteudo);
-  
-
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
       try {
-        const json = JSON.parse(e.target.result);
+        const json = this.retornoValidadocs;
 
         this.dados = {
           fileName: json.fileName || file.name,
@@ -95,6 +95,8 @@ export class HomePage implements OnInit {
           signatureType: json.signatureType || '---',
           pdfValid: json.validaDocsReturn?.pdfValidations?.isPDFACompliant === true
         };
+
+        console.log('Dados:', this.dados);
 
         if (Array.isArray(json.validaDocsReturn?.digitalSignatureValidations)) {
             this.certificados = json.validaDocsReturn.digitalSignatureValidations.map((item: any) => item.endCertSubjectName || 'Certificado Desconhecido');
@@ -146,8 +148,19 @@ export class HomePage implements OnInit {
         this.alerts.showAlert('Erro', 'O arquivo não está no formato esperado ou está corrompido.');
         this.resetValidador();
       }
-    };
-    reader.readAsText(file);
+
+
+    })
+    .catch(err => {
+      console.error('❌ Erro ao validar PDF:', err);
+    });
+
+  
+    // const reader = new FileReader();
+    // reader.onload = (e: any) => {
+    //  //removi daqui 
+    // };
+    // reader.readAsText(file);    
   }
 
   showAllDetails() {
