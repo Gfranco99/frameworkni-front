@@ -9,12 +9,12 @@
 <ion-content class="ion-padding background-light">
 
   <div class="upload-bar">
-    <ion-button color="tertiary" expand="block" (click)="fileInput.click()">
+    <ion-button color="primary" expand="block" (click)="fileInput.click()">
       📁 Selecionar PDF
     </ion-button>
     <input #fileInput type="file" (change)="onFileSelected($event)" accept="application/pdf" hidden />
 
-    <ion-button color="tertiary" expand="block" (click)="fileInputVdoc.click()">
+    <ion-button color="primary" expand="block" (click)="fileInputVdoc.click()">
       📁 Selecionar arquivo de validação
     </ion-button>
     <input #fileInputVdoc type="file" (change)="onFileSelected($event)" accept=".vdoc" hidden />
