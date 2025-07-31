@@ -66,14 +66,14 @@ export class HomePage implements OnInit {
       return;
     }
 
-    // --- NOVA LÓGICA: Verificar a extensão do arquivo ---
+     event.target.value = '';//Me permite selecionar o mesmo tipo de arquivo seguido 
+
     const fileName = file.name.toLowerCase();
     if (!fileName.endsWith('.vdoc') && !fileName.endsWith('.pdf')) {
       await this.alerts.showAlert('Atenção', 'Os arquivos selecionados não podem ser utilizados no sistema.');
       this.resetValidador(); // Reseta o estado para limpar qualquer dado anterior
       return; // Interrompe o processo para arquivos .vdoc
     }
-    // --- FIM DA NOVA LÓGICA ---
 
     // O restante do código só será executado se o arquivo NÃO for .vdoc
     await this.alerts.showLoading('Validando documento...');
@@ -101,6 +101,9 @@ export class HomePage implements OnInit {
       else if (fileName.endsWith('.pdf')){
 
         const jsonResponse = await this.validadocsservice.postPdf(file);
+
+        console.log('DEBUG JSON PDF:', jsonResponse);
+
         this.retornoValidadocs = jsonResponse;
         console.log('Resposta da validação:', this.retornoValidadocs);
 
@@ -129,7 +132,7 @@ export class HomePage implements OnInit {
           } catch (e) { /* ignore */ }
         }
       }
-      
+
       this.alerts.showAlert('Erro', errorMessage);
       this.resetValidador();
     }
@@ -144,6 +147,7 @@ export class HomePage implements OnInit {
         validationTime: json.validationTime || '#',
         isValid: json.isValid === true && json.status === 'OK',
         softwareVersion: json.softwareVersion || '---',
+        // softwareVersion: json.softwareVersion || json.validaDocsReturn?.softwareVersion || '---',
         signaturePolicy: json.signaturePolicy || '---',
         lpaValid: json.lpaValid === true,
         signatureType: json.signatureType || '---',
@@ -161,6 +165,8 @@ export class HomePage implements OnInit {
             isICP: item.isICP ?? false,
             iseGov: item.iseGov ?? false,
             rootIssuer: item.rootIssuer || '---',
+            certificateStartDate: item.certificateStartDate || null,
+            certificateEndDate: item.certificateEndDate || null,
           };
         });
 

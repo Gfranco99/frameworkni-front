@@ -1,0 +1,1 @@
+docker run --rm -p 8012:80 --env-file ./src/env.list --name cofreFront novaintegral/awcofre-front:2.0.7 &

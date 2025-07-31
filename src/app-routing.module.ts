@@ -4,7 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./_niframework/pages/start/start.module').then( m => m.StartPageModule)
+    // loadChildren: () => import('./_niframework/pages/start/start.module').then( m => m.StartPageModule)
+    loadChildren: () => import('./_niframework/pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'login',

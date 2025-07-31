@@ -17,7 +17,7 @@
     <ion-button color="tertiary" expand="block" (click)="fileInputVdoc.click()">
       📁 Selecionar arquivo de validação
     </ion-button>
-    <input #fileInputVdoc type="file" (change)="onFileSelected($event)" accept=".vdoc,application/octet-stream" hidden />
+    <input #fileInputVdoc type="file" (change)="onFileSelected($event)" accept=".vdoc" hidden />
   </div>
 
   <div class="modal-overlay" *ngIf="dados && showPreview && !showFullDetails">
@@ -57,9 +57,13 @@
         <p>
           Tipo de Assinatura: {{ dados?.signatureType || 'N/A' }}
         </p>
-        <p *ngIf="dados?.validationTime">
-          Assinado em: {{ dados?.validationTime | date:'dd/MM/yyyy HH:mm:ss' }}
+        
+        <p *ngIf="assinaturas.length > 0 && assinaturas[0].certificateStartDate">
+          Início do Certificado: {{ assinaturas[0].certificateStartDate | date:'dd/MM/yyyy HH:mm:ss' }}
         </p>
+        <p *ngIf="assinaturas.length > 0 && assinaturas[0].certificateEndDate">
+          Validade do Certificado: {{ assinaturas[0].certificateEndDate | date:'dd/MM/yyyy HH:mm:ss' }}
+        </p> 
 
         <ion-button expand="block" size="small" color="primary" (click)="showAllDetails()">Ver Detalhes Completos</ion-button>
       </div>
@@ -74,7 +78,7 @@
           Nome do Arquivo: {{ dados?.fileName }}
         </p>
         <p>
-          Data:
+          Data de Validação:
            {{ dados?.validationTime | date:'dd/MM/yyyy HH:mm:ss' }}
         </p>
         <p>
@@ -147,6 +151,8 @@
               <th>ICP-Brasil</th>
               <th>Gov.Br</th>
               <th>Autoridade Certificadora</th>
+              <th>Início do Certificado</th>
+              <th>Validade do Certificado</th>
             </tr>
           </thead>
           <tbody>
@@ -169,6 +175,12 @@
                 </span>
               </td>
               <td>{{ assinatura.rootIssuer || '---' }}</td>
+              <td>
+                {{ assinatura.certificateStartDate | date:'dd/MM/yyyy HH:mm:ss' }}
+              </td>
+              <td>
+                {{ assinatura.certificateEndDate | date:'dd/MM/yyyy HH:mm:ss' }}
+              </td>
             </tr>
           </tbody>
         </table>
