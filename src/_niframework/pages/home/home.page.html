@@ -10,11 +10,14 @@
 
   <div class="upload-bar">
     <ion-button color="tertiary" expand="block" (click)="fileInput.click()">
-      📁 Selecionar arquivo .vdoc
+      📁 Selecionar PDF
     </ion-button>
-    <!-- <input #fileInput type="file" (change)="onFileSelected($event)" accept=".vdoc" hidden /> -->
     <input #fileInput type="file" (change)="onFileSelected($event)" accept="application/pdf" hidden />
 
+    <ion-button color="tertiary" expand="block" (click)="fileInputVdoc.click()">
+      📁 Selecionar arquivo de validação
+    </ion-button>
+    <input #fileInputVdoc type="file" (change)="onFileSelected($event)" accept=".vdoc,application/octet-stream" hidden />
   </div>
 
   <div class="modal-overlay" *ngIf="dados && showPreview && !showFullDetails">

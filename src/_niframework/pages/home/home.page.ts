@@ -15,18 +15,15 @@ import { ValidadocsServiceService } from 'src/_niframework/services/validadocs/v
 })
 export class HomePage implements OnInit {
 
-  // ... (outros atributos)
   public dados: any = null;
   public retornoValidadocs: any = null;
   public certificados: string[] = [];
   public assinaturas: any[] = [];
   public todosCertificadosValidos: boolean = false;
 
-  // Atributos de controle de exibição de preview/detalhes
   public showFullDetails: boolean = false;
   public showPreview: boolean = false;
 
-  // NOVA PROPRIEDADE para armazenar os nomes formatados dos assinantes
   public formattedSignerNames: string = 'Não identificado'; // Valor padrão
 
   constructor(
@@ -43,7 +40,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    // ... (restante do ngOnInit)
+    // Coloque aqui qualquer inicialização que precise ser feita na criação do componente
   }
 
   ionViewWillEnter() {
@@ -61,106 +58,149 @@ export class HomePage implements OnInit {
     this.formattedSignerNames = 'Não identificado'; // Resetar também
   }
 
-  // ... (outros métodos)
-
-  /* MÉTODO PARA LER O .vdoc */
-  onFileSelected(event: any) {
+  /* MÉTODO PARA LER E VALIDAR O DOCUMENTO VIA SERVIÇO */
+  async onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) {
       this.alerts.showAlert('Erro', 'Nenhum arquivo selecionado.');
       return;
     }
 
-    // if (!file.name.toLowerCase().endsWith('.vdoc')) {
-    //   this.alerts.showAlert('Erro', 'Selecione um arquivo com extensão .vdoc');
-    //   this.resetValidador();
-    //   return;
-    // }
-    
-    this.validadocsservice.postPdf(file)
-    .then(result => {
-      
-      this.retornoValidadocs = result;
+    // --- NOVA LÓGICA: Verificar a extensão do arquivo ---
+    const fileName = file.name.toLowerCase();
+    if (!fileName.endsWith('.vdoc') && !fileName.endsWith('.pdf')) {
+      await this.alerts.showAlert('Atenção', 'Os arquivos selecionados não podem ser utilizados no sistema.');
+      this.resetValidador(); // Reseta o estado para limpar qualquer dado anterior
+      return; // Interrompe o processo para arquivos .vdoc
+    }
+    // --- FIM DA NOVA LÓGICA ---
 
-      try {
-        const json = this.retornoValidadocs;
+    // O restante do código só será executado se o arquivo NÃO for .vdoc
+    await this.alerts.showLoading('Validando documento...');
 
-        this.dados = {
-          fileName: json.fileName || file.name,
-          validationTime: json.validationTime || '#',
-          isValid: json.isValid === true && json.status === 'OK',
-          softwareVersion: json.softwareVersion || '---',
-          signaturePolicy: json.signaturePolicy || '---',
-          lpaValid: json.lpaValid === true,
-          signatureType: json.signatureType || '---',
-          pdfValid: json.validaDocsReturn?.pdfValidations?.isPDFACompliant === true
+    try {
+
+      if(fileName.endsWith('.vdoc')) {
+         
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          try {
+            const json = JSON.parse(e.target.result);
+
+            this.mostraNaTela(file, json);
+
+          } catch (err) {
+            console.error('Erro ao ler arquivo .vdoc', err);
+            this.alerts.showAlert('Erro', 'O arquivo não está no formato esperado ou está corrompido.');
+            this.resetValidador();
+          }
         };
+        reader.readAsText(file);
+        
+      }
+      else if (fileName.endsWith('.pdf')){
 
-        console.log('Dados:', this.dados);
+        const jsonResponse = await this.validadocsservice.postPdf(file);
+        this.retornoValidadocs = jsonResponse;
+        console.log('Resposta da validação:', this.retornoValidadocs);
 
-        if (Array.isArray(json.validaDocsReturn?.digitalSignatureValidations)) {
-            this.certificados = json.validaDocsReturn.digitalSignatureValidations.map((item: any) => item.endCertSubjectName || 'Certificado Desconhecido');
-        } else {
-            this.certificados = [];
+        this.mostraNaTela(file, jsonResponse);
+      
+      }    
+      
+      await this.alerts.dismissLoading();
+      this.changeDetector.detectChanges();
+
+    } catch (err: any) {
+      console.error('❌ Erro ao validar documento:', err);
+      await this.alerts.dismissLoading();
+
+      let errorMessage = 'Ocorreu um erro ao validar o documento.';
+      if (err.error && err.error.detail) {
+        errorMessage = err.error.detail;
+      } else if (err.message) {
+        errorMessage = err.message;
+      } else if (err.status) {
+        errorMessage = `Erro ${err.status}: ${err.statusText || 'Falha na requisição.'}`;
+        if (err.error && typeof err.error === 'object') {
+          try {
+            const errorBody = JSON.stringify(err.error);
+            errorMessage += ` Detalhes: ${errorBody}`;
+          } catch (e) { /* ignore */ }
         }
+      }
+      
+      this.alerts.showAlert('Erro', errorMessage);
+      this.resetValidador();
+    }
+  }
 
-        if (Array.isArray(json.validaDocsReturn?.digitalSignatureValidations)) {
-          this.assinaturas = json.validaDocsReturn.digitalSignatureValidations.map((item: any) => {
-            return {
-              signatureValid: item.signatureValid ?? false,
-              signatureErrors: item.signatureErrors || '---',
-              endCertSubjectName: item.endCertSubjectName || '---',
-              isICP: item.isICP ?? false,
-              iseGov: item.iseGov ?? false,
-              rootIssuer: item.rootIssuer || '---'
-            };
-          });
 
-          this.todosCertificadosValidos = this.assinaturas.every(assinatura => assinatura.signatureValid);
+  mostraNaTela(file: File, conteudoJson: any) {
+    const json = conteudoJson;
 
-          // Lógica para formatar os nomes dos assinantes e atribuir à nova propriedade
-          if (this.assinaturas.length > 0) {
-            this.formattedSignerNames = this.assinaturas
-              .map(a => a?.endCertSubjectName?.split('CN=')[1]) // Pega a parte após 'CN='
-              .filter(name => name && name.trim() !== '')       // Filtra nomes vazios/nulos
-              .join(', ');                                    // Junta com vírgula e espaço
-            
-            // Se o resultado final ainda for vazio (ex: CN= com valor vazio), define como 'Não identificado'
-            if (this.formattedSignerNames.trim() === '') {
-              this.formattedSignerNames = 'Não identificado';
-            }
-          } else {
+      this.dados = {
+        fileName: json.fileName || file.name,
+        validationTime: json.validationTime || '#',
+        isValid: json.isValid === true && json.status === 'OK',
+        softwareVersion: json.softwareVersion || '---',
+        signaturePolicy: json.signaturePolicy || '---',
+        lpaValid: json.lpaValid === true,
+        signatureType: json.signatureType || '---',
+        pdfValid: json.validaDocsReturn?.pdfValidations?.isPDFACompliant === true
+      };
+
+      if (Array.isArray(json.validaDocsReturn?.digitalSignatureValidations)) {
+        this.certificados = json.validaDocsReturn.digitalSignatureValidations.map((item: any) => item.endCertSubjectName || 'Certificado Desconhecido');
+        
+        this.assinaturas = json.validaDocsReturn.digitalSignatureValidations.map((item: any) => {
+          return {
+            signatureValid: item.signatureValid ?? false,
+            signatureErrors: item.signatureErrors || '---',
+            endCertSubjectName: item.endCertSubjectName || '---',
+            isICP: item.isICP ?? false,
+            iseGov: item.iseGov ?? false,
+            rootIssuer: item.rootIssuer || '---',
+          };
+        });
+
+        this.todosCertificadosValidos = this.assinaturas.every(assinatura => assinatura.signatureValid);
+
+        if (this.assinaturas.length > 0) {
+          this.formattedSignerNames = this.assinaturas
+            .map(a => this.formatCertName(a?.endCertSubjectName))
+            .filter(name => name && name.trim() !== '' && name !== 'Não identificado')
+            .join(', ');
+
+          if (this.formattedSignerNames.trim() === '') {
             this.formattedSignerNames = 'Não identificado';
           }
-
         } else {
-            this.assinaturas = [];
-            this.todosCertificadosValidos = false;
-            this.formattedSignerNames = 'Não identificado'; // Reseta se não houver assinaturas
+          this.formattedSignerNames = 'Não identificado';
         }
 
-        this.showPreview = true;
-        this.showFullDetails = false;
-
-        this.changeDetector.detectChanges();
-      } catch (err) {
-        console.error('Erro ao ler arquivo .vdoc', err);
-        this.alerts.showAlert('Erro', 'O arquivo não está no formato esperado ou está corrompido.');
-        this.resetValidador();
+      } else {
+        this.certificados = [];
+        this.assinaturas = [];
+        this.todosCertificadosValidos = false;
+        this.formattedSignerNames = 'Não identificado';
       }
 
+      this.showPreview = true;
+      this.showFullDetails = false;
 
-    })
-    .catch(err => {
-      console.error('❌ Erro ao validar PDF:', err);
-    });
+  } 
 
-  
-    // const reader = new FileReader();
-    // reader.onload = (e: any) => {
-    //  //removi daqui 
-    // };
-    // reader.readAsText(file);    
+
+  formatCertName(name: string | undefined): string {
+    if (name) {
+      const parts = name.split('CN=');
+      if (parts.length > 1) {
+        return parts[1].trim();
+      }
+      return name.trim();
+    }
+    return 'Não identificado';
   }
 
   showAllDetails() {
